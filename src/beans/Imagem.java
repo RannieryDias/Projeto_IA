@@ -1,5 +1,5 @@
 package beans;
 
-public class Individuo {
+public class Imagem {
 	
 }
