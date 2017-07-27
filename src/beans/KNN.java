@@ -91,40 +91,40 @@ public class KNN {
 		for(int gatoTest = 3089 ; gatoTest < 3329 ; gatoTest++){
 			test[gatoTest] = imgs[gatoTest];
 		}
-		for (int veadoTreino = 3329 ; veadoTreino < 3815 ; veadoTreino++){
+		for (int veadoTreino = 3329 ; veadoTreino < 3797 ; veadoTreino++){
 			treino[veadoTreino] = imgs[veadoTreino];
 		}
-		for (int veadoTest = 3815 ; veadoTest < 4049 ; veadoTest++){
+		for (int veadoTest = 3797 ; veadoTest < 4031 ; veadoTest++){
 			test[veadoTest] = imgs[veadoTest];
 		}
-		for(int cachorroTreino = 4049 ; cachorroTreino < 4554 ; cachorroTreino++){
+		for(int cachorroTreino = 4031 ; cachorroTreino < 4536 ; cachorroTreino++){
 			treino[cachorroTreino] = imgs[cachorroTreino];
 		}
-		for (int cachorroTest = 4554 ; cachorroTest < 4806 ; cachorroTest++){
+		for (int cachorroTest = 4536 ; cachorroTest < 4788 ; cachorroTest++){
 			test[cachorroTest] = imgs[cachorroTest];
 		}
-		for (int sapoTreino = 4806 ; sapoTreino < 5344 ; sapoTreino++){
+		for (int sapoTreino = 4788 ; sapoTreino < 5326 ; sapoTreino++){
 			treino[sapoTreino] = imgs[sapoTreino];
 		}
-		for (int sapoTest = 5434 ; sapoTest < 5613 ; sapoTest++){
+		for (int sapoTest = 5326 ; sapoTest < 5595 ; sapoTest++){
 			test[sapoTest] = imgs[sapoTest];
 		}
-		for (int cavaloTreino = 5613 ; cavaloTreino < 6058 ; cavaloTreino++){
+		for (int cavaloTreino = 5595 ; cavaloTreino < 6040 ; cavaloTreino++){
 			treino[cavaloTreino] = imgs[cavaloTreino];
 		}
-		for (int cavaloTest = 6058 ; cavaloTest < 6280 ; cavaloTest++){
+		for (int cavaloTest = 6040 ; cavaloTest < 6262 ; cavaloTest++){
 			test[cavaloTest] = imgs[cavaloTest];
 		}
-		for (int navioTreino = 6280 ; navioTreino < 6848 ; navioTreino++){
+		for (int navioTreino = 6262 ; navioTreino < 6830 ; navioTreino++){
 			treino[navioTreino] = imgs[navioTreino];
 		}
-		for (int navioTest = 6848 ; navioTest < 7132 ; navioTest++){
+		for (int navioTest = 6830 ; navioTest < 7114 ; navioTest++){
 			test[navioTest] = imgs[navioTest];
 		}
-		for (int caminhaoTreino = 7132 ; caminhaoTreino < 7685 ; caminhaoTreino++){
+		for (int caminhaoTreino = 7114 ; caminhaoTreino < 7667 ; caminhaoTreino++){
 			treino[caminhaoTreino] = imgs[caminhaoTreino];
 		}
-		for (int caminhaoTest = 7685 ; caminhaoTest < 7962 ; caminhaoTest++){
+		for (int caminhaoTest = 7667 ; caminhaoTest < 7944 ; caminhaoTest++){
 			test[caminhaoTest] = imgs[caminhaoTest];
 		}
 	}
