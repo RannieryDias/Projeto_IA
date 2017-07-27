@@ -3,11 +3,23 @@ package beans;
 import java.util.ArrayList;
 
 public class KNN {
-	private ArrayList<Imagem> Imagens;
+	private Imagem[] imagensTreinamento;
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public KNN (Imagem[] imagensTreinamento){
+		this.imagensTreinamento = imagensTreinamento;
+	}
+	
+	public Imagem[] getImagensTreinamento() {
+		return imagensTreinamento;
 	}
 
+	public void setImagensTreinamento(Imagem[] imagensTreinamento) {
+		this.imagensTreinamento = imagensTreinamento;
+	}
+
+	public static void main(String[] args) {
+		
+
+	}
+	
 }
