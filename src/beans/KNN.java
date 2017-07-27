@@ -10,10 +10,6 @@ public class KNN {
 	private Imagem[] imagensTreinamento;
 	private Imagem[] imagensTest;
 
-	public KNN() {
-
-	}
-
 	public KNN (Imagem[] imagens){
 		this.imagens = imagens;
 	}
@@ -31,7 +27,7 @@ public class KNN {
 	}
 
 	public void setImagensTreinamento(Imagem[] imagens) {
-
+		this.imagensTreinamento = imagens;
 	}
 
 	public Imagem[] getImagensTest() {
@@ -39,35 +35,11 @@ public class KNN {
 	}
 
 	public void setImagensTest(Imagem[] imagens) {
-
+		this.imagensTest = imagens;
 	}
 
-	/*public static void main(String[] args) throws IOException {
-		FileReader file = new FileReader("C:\\Users\\Desolation\\git\\Projeto_IA\\artefatos\\histogramas e classes.txt");
-		BufferedReader arq = new BufferedReader(file);
-
-		//Leitura do arquivo de entrada para carregar as imagens no vetor de imagens do KNN
-		String linha = "";
-		String imagemComClasse[];
-		Imagem imgs [] = new Imagem[7944];
-		int hist [] = new int[256];
-		int j = 0;
-		while (arq.ready()) {
-			linha = arq.readLine();
-			imagemComClasse = linha.split(",");
-			for(int i = 0; i < 256; i++) {
-				hist[i] = Integer.parseInt(imagemComClasse[i]);
-			}
-			Imagem img = new Imagem(hist);
-			img.setClasse(imagemComClasse[256]);
-			imgs[j] = img;
-			j++;
-		}*/
-
-	//CRIAÇÃO DO KNN
-	//KNN knn = new KNN(imgs);
-
-	public Imagem[] LerArquivo() throws NumberFormatException, IOException {
+	
+	public static Imagem[] LerArquivo() throws NumberFormatException, IOException {
 		FileReader file = new FileReader("artefatos\\histogramas e classes.txt");
 		BufferedReader arq = new BufferedReader(file);
 
@@ -89,6 +61,10 @@ public class KNN {
 			j++;
 		}
 		return imgs;
+	}
+	
+	public void dividirImagens (Imagem[] imgs){
+		
 	}
 }
 

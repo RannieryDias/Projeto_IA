@@ -5,14 +5,10 @@ import java.util.Random;
 
 public class Principal {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Imagem[] imgs = KNN.LerArquivo();
+		KNN knn = new KNN (imgs);
 		
-	}
-	public void ImagensAleatórias() throws NumberFormatException, IOException {
-		Random gerador = new Random();
-		KNN knn = new KNN();
-		Imagem[] imgs = new Imagem[7944];
-		imgs = knn.LerArquivo();
 		
 	}
 }
