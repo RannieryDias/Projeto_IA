@@ -4,9 +4,8 @@ public class Imagem {
 	private int [] histograma;
 	private String classe;
 	
-	public Imagem (int [] hist, String classe) {
+	public Imagem (int [] hist) {
 		this.histograma = hist;
-		this.classe = classe;
 	}
 
 	public int[] getHistograma() {
