@@ -186,7 +186,7 @@ public class KNN {
 		//553(treino) 277(test)- caminhao (830)
 	}
 
-	
+	//Calcula a distancia Euclidiana Ponderada entre duas imagens
 	public double distanciaEuclidianaPonderada(Imagem imgA, Imagem imgB) {
 		double soma = 0;
 		double sub = 0;
@@ -211,7 +211,7 @@ public class KNN {
 		return ponderado;
 	}
 	
-	//ponderamento
+	//ponderamento da distancia Euclidiana
 	private double ponderamento(double resultado, Imagem imgA, Imagem imgB) {
 		double w, temp = 0,resultadoPonderado = 0;
 
@@ -234,6 +234,8 @@ public class KNN {
 		int treinamento = imagemTreinamento.length;
 		double[]dist = new double[treinamento];
 		double[] menoresdist = new double[treinamento];
+		int maior;
+		
 		//contador para as possiveis classes
 		int aviao = 0;
 		int carro = 0;
@@ -296,7 +298,7 @@ public class KNN {
 			}
 		}
 		
-		int maior = aviao;
+		maior = aviao;
 		if(maior < carro)
 			maior = carro;
 		if(maior < passaro)
