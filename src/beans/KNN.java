@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
@@ -28,7 +29,7 @@ public class KNN {
 		Imagem imgs [] = new Imagem[7944];
 		int hist [] = new int[256];
 		int j = 0;
-		Imagem img = null;
+		
 		
 		while (arq.ready()) {
 			linha = arq.readLine();
@@ -36,13 +37,13 @@ public class KNN {
 			for(int i = 0; i < 256; i++) {
 				hist[i] = Integer.parseInt(imagemComClasse[i]);
 			}
-			img = new Imagem(hist);
+			Imagem img = new Imagem(hist);
 			img.setClasse(imagemComClasse[256]);
 			imgs[j] = img;
 			j++;
 		}
 		for(int i = 0; i < 7944; i++) {
-			img = imgs[i];
+			Imagem img = imgs[i];
 			for(int w = 0; w < 256; w++) {
 				System.out.print(img.getHistograma()[w]);
 			}
@@ -184,30 +185,7 @@ public class KNN {
 		//568(treino) 284(test)- navio (852) 
 		//553(treino) 277(test)- caminhao (830)
 	}
-		
-	public Imagem[] getImagens() {
-		return imagens;
-	}
 
-	public void setImagens(Imagem[] imagens) {
-		this.imagens = imagens;
-	}
-
-	public Imagem[] getImagensTreinamento() {
-		return imagensTreinamento;
-	}
-
-	public void setImagensTreinamento(Imagem[] imagens) {
-		this.imagensTreinamento = imagens;
-	}
-
-	public Imagem[] getImagensTest() {
-		return imagensTest;
-	}
-
-	public void setImagensTest(Imagem[] imagens) {
-		this.imagensTest = imagens;
-	}
 	
 	public double distanciaEuclidianaPonderada(Imagem imgA, Imagem imgB) {
 		double soma = 0;
@@ -250,10 +228,142 @@ public class KNN {
 		return resultadoPonderado;
 	}
 	
-	public String classificacao() {
-		return null;
+	//Metodo para classificação das imagens - OBS USAR UM NUMERO IMPAR PARA O K
+	public String classificacao(int k, Imagem[] imagemTreinamento, Imagem img) {
+		
+		int treinamento = imagemTreinamento.length;
+		double[]dist = new double[treinamento];
+		double[] menoresdist = new double[treinamento];
+		//contador para as possiveis classes
+		int aviao = 0;
+		int carro = 0;
+		int passaro = 0;
+		int gato = 0;
+		int veado = 0;
+		int cachorro = 0;
+		int sapo = 0;
+		int cavalo = 0;
+		int navio = 0;
+		int caminhao = 0;
+		
+		//verifica se o k é par, caso seja, passa a ser impar
+		if(k % 2 == 0)
+			k++;
+		
+		//calcula a distancia
+		for(int i = 0; i < treinamento; i++) {
+			double d = this.distanciaEuclidianaPonderada(imagemTreinamento[i], img);
+			dist[i] = d;
+			menoresdist[i] = d;
+		}
+		
+		//pega as k menores distancias e verifica qual a classe da imagem para no final classificar
+		Arrays.sort(menoresdist);
+		for (int i = 0; i < k; i++) {
+			for(int j = 0; j < dist.length; j++) {
+				if (menoresdist[i] == dist[j]) {
+					if (imagemTreinamento[j].getClasse() == "'aviao'") {
+						aviao++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'carro'") {
+						carro++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'passaro'") {
+						passaro++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'gato'") {
+						gato++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'veado'") {
+						veado++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'cachorro'") {
+						cachorro++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'sapo'") {
+						sapo++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'cavalo'") {
+						cavalo++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'navio'") {
+						navio++;
+					}
+					else if (imagemTreinamento[j].getClasse() == "'caminhao'") {
+						caminhao++;
+					}
+				}
+			}
+		}
+		
+		int maior = aviao;
+		if(maior < carro)
+			maior = carro;
+		if(maior < passaro)
+			maior = passaro;
+		if(maior < gato)
+			maior = gato;
+		if(maior < veado)
+			maior = veado;
+		if(maior < cachorro)
+			maior = cachorro;
+		if(maior < sapo)
+			maior = sapo;
+		if (maior < cavalo)
+			maior = cavalo;
+		if(maior < navio)
+			maior = navio;
+		if(maior < caminhao)
+			maior = caminhao;
+
+		//Retorna a string com a classe da imagem
+		if (maior == aviao)
+			return "'aviao'";
+		else if(maior == carro)
+			return "'carro'";
+		else if (maior == passaro)
+			return "'passaro'";
+		else if(maior == gato)
+			return "'gato'";
+		else if(maior == veado)
+			return "'veado'";
+		else if (maior == cachorro)
+			return "'cachorro'";
+		else if (maior == sapo)
+			return "'sapo'";
+		else if (maior == cavalo)
+			return "'cavalo'";
+		else if (maior == navio)
+			return "'navio'";
+		else if (maior == caminhao)
+			return "'caminhao'";
+		else 
+			return "NAO CLASSIFICADO";
 	}
-	
+
+	public Imagem[] getImagens() {
+		return imagens;
+	}
+
+	public void setImagens(Imagem[] imagens) {
+		this.imagens = imagens;
+	}
+
+	public Imagem[] getImagensTreinamento() {
+		return imagensTreinamento;
+	}
+
+	public void setImagensTreinamento(Imagem[] imagens) {
+		this.imagensTreinamento = imagens;
+	}
+
+	public Imagem[] getImagensTest() {
+		return imagensTest;
+	}
+
+	public void setImagensTest(Imagem[] imagens) {
+		this.imagensTest = imagens;
+	}
 }
 
 
