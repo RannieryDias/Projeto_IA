@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 public class KNN {
 	private Imagem[] imagens;
 	private Imagem[] imagensTreinamento;
@@ -38,6 +40,7 @@ public class KNN {
 			j++;
 		}
 		arq.close();
+		file.close();
 		return imgs;
 	}
 	
@@ -197,25 +200,33 @@ public class KNN {
 		this.imagensTest = imagens;
 	}
 	
-	public float distanciaEuclidianaPonderada(Imagem imgA, Imagem imgB) {
-		int soma = 0;
-		float resultado = 0;
-		float ponderado = 0;
-
+	public double distanciaEuclidianaPonderada(Imagem imgA, Imagem imgB) {
+		double soma = 0;
+		double sub = 0;
+		double resultado = 0;
+		double ponderado = 0;
+		
+		
 		//somatório da distancia euclidiana
 		for (int i = 0; i < 256; i++) {
-			soma += (int) Math.pow((imgA.getHistograma()[i] - imgB.getHistograma()[i]), 2);
+			sub = imgA.getHistograma()[i] - imgB.getHistograma()[i];
+			soma += Math.pow(sub, 2);
+			sub = 0;
 		}
+		System.out.println(soma);
 			
 		//raiz do somatório
-		resultado = (float) Math.sqrt(soma);
+		resultado = Math.sqrt(soma);
+		System.out.println(resultado);
+		//ponderamento
 		ponderado = this.ponderamento(resultado, imgA, imgB);
+		System.out.println(ponderado);
 		return ponderado;
 	}
 	
 	//ponderamento
-	private float ponderamento(float resultado, Imagem imgA, Imagem imgB) {
-		float w, temp = 0,resultadoPonderado = 0;
+	private double ponderamento(double resultado, Imagem imgA, Imagem imgB) {
+		double w, temp = 0,resultadoPonderado = 0;
 
 		//obtendo o valor do peso
 		w = 1/resultado;
@@ -226,7 +237,7 @@ public class KNN {
 		}
 		
 		//raiz do ponderamento
-		resultadoPonderado = (float) Math.sqrt(temp);
+		resultadoPonderado = Math.sqrt(temp);
 		return resultadoPonderado;
 	}
 	

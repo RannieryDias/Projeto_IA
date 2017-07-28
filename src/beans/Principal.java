@@ -11,21 +11,16 @@ public class Principal {
 		Imagem[] imgs = KNN.LerArquivo();
 		KNN knn = new KNN (imgs);
 		knn.dividirImagens(imgs);
-		
-		for(int i = 0; i < knn.getImagensTreinamento().length; i++) {
-			System.out.println(knn.getImagensTreinamento()[i].getClasse());
-		}
-		
-		
-		for (int i = 0; i < knn.getImagensTest().length; i++) {
-			if(!(knn.getImagensTest()[i].getClasse() == null)){
-				System.out.print("tem classe:");
-				System.out.println(knn.getImagensTest()[i].getClasse());
+		for(int i = 0; i < 256; i++) {
+			if(knn.getImagensTreinamento()[i].equals(knn.getImagensTest()[i]))
+				System.out.println("IGUAL");
+			else {
+				System.out.println("diferente");
 			}
 		}
+		//double dist = knn.distanciaEuclidianaPonderada(knn.getImagensTreinamento()[651], knn.getImagensTest()[0]);
 		
-		//knn.distanciaEuclidiana();
-		
+		//System.out.println(dist);
 		System.out.println("done");
 		
 	}

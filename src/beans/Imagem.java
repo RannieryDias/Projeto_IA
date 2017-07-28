@@ -24,5 +24,16 @@ public class Imagem {
 		this.classe = classe;
 	}
 	
+	public boolean equals(Imagem a) {
+		int cont = 0;
+		for(int i = 0; i < 256; i++) {
+			if(this.getHistograma()[i] == a.getHistograma()[i])
+				cont++;
+		}
+		if(cont == 256)
+			return true;
+		else
+			return false;
+	}
 	
 }
