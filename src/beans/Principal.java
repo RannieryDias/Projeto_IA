@@ -9,7 +9,8 @@ public class Principal {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		Imagem[] imgs = KNN.LerArquivo();
-		
+
+// 		AINDA COM ERRO NA LEITURA DAS IMAGENS	
 //		for(int i =0; i < 256; i++)
 //			System.out.print(imgs[0].getHistograma()[i]);
 //		
