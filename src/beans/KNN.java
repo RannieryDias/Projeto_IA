@@ -197,21 +197,24 @@ public class KNN {
 		this.imagensTest = imagens;
 	}
 	
-	public float distanciaEuclidiana(Imagem imgA, Imagem imgB) {
+	public float distanciaEuclidianaPonderada(Imagem imgA, Imagem imgB) {
 		int soma = 0;
 		float resultado = 0;
+		float ponderado = 0;
 
 		//somatório da distancia euclidiana
 		for (int i = 0; i < 256; i++) {
-			soma += (int) ((int) Math.pow(imgA.getHistograma()[i], 2) - Math.pow(imgB.getHistograma()[i], 2));
+			soma += (int) Math.pow((imgA.getHistograma()[i] - imgB.getHistograma()[i]), 2);
 		}
 			
 		//raiz do somatório
 		resultado = (float) Math.sqrt(soma);
-		return resultado;
+		ponderado = this.ponderamento(resultado, imgA, imgB);
+		return ponderado;
 	}
+	
 	//ponderamento
-	public float ponderamento(float resultado, Imagem imgA, Imagem imgB) {
+	private float ponderamento(float resultado, Imagem imgA, Imagem imgB) {
 		float w, temp = 0,resultadoPonderado = 0;
 
 		//obtendo o valor do peso
@@ -219,13 +222,18 @@ public class KNN {
 		
 		//somatório da distancia euclidiana aplicando o peso
 		for(int i = 0; i < 256; i++) {
-			temp += (w*(imgA.getHistograma()[i])) - (w*(imgB.getHistograma()[i]));
+			temp += (w*(Math.pow((imgA.getHistograma()[i] - imgB.getHistograma()[i]), 2)));
 		}
 		
 		//raiz do ponderamento
 		resultadoPonderado = (float) Math.sqrt(temp);
 		return resultadoPonderado;
 	}
+	
+	public String classificacao() {
+		return null;
+	}
+	
 }
 
 
