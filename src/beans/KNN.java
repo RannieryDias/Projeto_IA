@@ -197,18 +197,28 @@ public class KNN {
 		this.imagensTest = imagens;
 	}
 	
-	public int distanciaEuclidiana(Imagem imgA, Imagem imgB) {
-		
-		int resultado = 0;
+	public float distanciaEuclidiana(Imagem imgA, Imagem imgB) {
+		int soma = 0;
+		float resultado = 0;
 
 		//somatório da distancia euclidiana
 		for (int i = 0; i < 256; i++) {
-			resultado += (int) ((int) Math.pow(imgA.getHistograma()[i], 2) - Math.pow(imgB.getHistograma()[i], 2));
+			soma += (int) ((int) Math.pow(imgA.getHistograma()[i], 2) - Math.pow(imgB.getHistograma()[i], 2));
 		}
-		
+			
 		//raiz do somatório
-		Math.sqrt(resultado);
+		resultado = (float) Math.sqrt(soma);
 		return resultado;
+	}
+	//ponderamento
+	public float ponderamento(float resultado, Imagem imgA, Imagem imgB) {
+		float w, temp = 0,resultadoPonderado = 0;
+		w = 1/resultado;
+		for(int i = 0; i < 256; i++) {
+			temp += (w*(imgA.getHistograma()[i])) - (w*(imgB.getHistograma()[i]));
+		}
+		resultadoPonderado = (float) Math.sqrt(temp);
+		return resultadoPonderado;
 	}
 }
 
