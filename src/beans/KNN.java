@@ -28,16 +28,25 @@ public class KNN {
 		Imagem imgs [] = new Imagem[7944];
 		int hist [] = new int[256];
 		int j = 0;
+		Imagem img = null;
+		
 		while (arq.ready()) {
 			linha = arq.readLine();
 			imagemComClasse = linha.split(",");
 			for(int i = 0; i < 256; i++) {
 				hist[i] = Integer.parseInt(imagemComClasse[i]);
 			}
-			Imagem img = new Imagem(hist);
+			img = new Imagem(hist);
 			img.setClasse(imagemComClasse[256]);
 			imgs[j] = img;
 			j++;
+		}
+		for(int i = 0; i < 7944; i++) {
+			img = imgs[i];
+			for(int w = 0; w < 256; w++) {
+				System.out.print(img.getHistograma()[w]);
+			}
+			System.out.println();
 		}
 		arq.close();
 		file.close();
