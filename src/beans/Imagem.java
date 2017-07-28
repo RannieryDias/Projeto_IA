@@ -1,7 +1,7 @@
 package beans;
 
 public class Imagem {
-	private int [] histograma;
+	private int[]  histograma;
 	private String classe;
 	
 	public Imagem (int [] hist) {

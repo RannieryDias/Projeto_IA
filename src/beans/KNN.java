@@ -37,6 +37,7 @@ public class KNN {
 			imgs[j] = img;
 			j++;
 		}
+		arq.close();
 		return imgs;
 	}
 	
@@ -171,7 +172,7 @@ public class KNN {
 		//568(treino) 284(test)- navio (852) 
 		//553(treino) 277(test)- caminhao (830)
 	}
-	
+		
 	public Imagem[] getImagens() {
 		return imagens;
 	}
@@ -195,9 +196,20 @@ public class KNN {
 	public void setImagensTest(Imagem[] imagens) {
 		this.imagensTest = imagens;
 	}
+	
+	public int distanciaEuclidiana(Imagem imgA, Imagem imgB) {
+		
+		int resultado = 0;
 
+		//somatório da distancia euclidiana
+		for (int i = 0; i < 256; i++) {
+			resultado += (int) ((int) Math.pow(imgA.getHistograma()[i], 2) - Math.pow(imgB.getHistograma()[i], 2));
+		}
+		
+		//raiz do somatório
+		Math.sqrt(resultado);
+		return resultado;
+	}
 }
-
-
 
 

@@ -24,6 +24,8 @@ public class Principal {
 			}
 		}
 		
+		//knn.distanciaEuclidiana();
+		
 		System.out.println("done");
 		
 	}
