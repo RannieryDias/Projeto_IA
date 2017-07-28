@@ -213,10 +213,16 @@ public class KNN {
 	//ponderamento
 	public float ponderamento(float resultado, Imagem imgA, Imagem imgB) {
 		float w, temp = 0,resultadoPonderado = 0;
+
+		//obtendo o valor do peso
 		w = 1/resultado;
+		
+		//somatório da distancia euclidiana aplicando o peso
 		for(int i = 0; i < 256; i++) {
 			temp += (w*(imgA.getHistograma()[i])) - (w*(imgB.getHistograma()[i]));
 		}
+		
+		//raiz do ponderamento
 		resultadoPonderado = (float) Math.sqrt(temp);
 		return resultadoPonderado;
 	}
