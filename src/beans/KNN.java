@@ -13,31 +13,32 @@ public class KNN {
 	private Imagem[] imagensTreinamento;
 	private Imagem[] imagensTest;
 
-	public KNN (Imagem[] imagens){
+	public KNN(Imagem[] imagens) {
 		this.imagens = imagens;
 	}
-	
-	
-	
+
 	public static Imagem[] LerArquivo() throws NumberFormatException, IOException {
 		FileReader file = new FileReader("artefatos\\histogramas e classes.txt");
 		BufferedReader arq = new BufferedReader(file);
 
-		//Leitura do arquivo de entrada para carregar as imagens no vetor de imagens do KNN
+		// Leitura do arquivo de entrada para carregar as imagens no vetor de
+		// imagens do KNN
 		String linha = "";
 		String imagemComClasse[];
-		Imagem imgs [] = new Imagem[7944];
-		int hist [] = new int[256];
+		Imagem imgs[] = new Imagem[7944];
+		int hist[] = new int[256];
 		int j = 0;
 		Imagem img = null;
-		
-		
-		while (arq.ready()) {
-			linha = arq.readLine();
+		int aux1 = 0;
+
+		while ((linha = arq.readLine()) != null) {
 			imagemComClasse = linha.split(",");
-			for(int i = 0; i < 256; i++) {
-				hist[i] = Integer.parseInt(imagemComClasse[i]);
+			hist = new int[256];
+			for (int i = 0; i < 256; i++) {
+				aux1 = Integer.parseInt(imagemComClasse[i]);
+				hist[i] = aux1;
 			}
+
 			img = new Imagem(hist);
 			img.setClasse(imagemComClasse[256]);
 			imgs[j] = img;
@@ -45,9 +46,10 @@ public class KNN {
 			img = null;
 		}
 		img = null;
-		for(int i = 0; i < 7944; i++) {
+
+		for (int i = 0; i < 7944; i++) {
 			img = imgs[i];
-			for(int w = 0; w < 256; w++) {
+			for (int w = 0; w < 256; w++) {
 				System.out.print(img.getHistograma()[w]);
 			}
 			System.out.println();
@@ -56,190 +58,190 @@ public class KNN {
 		file.close();
 		return imgs;
 	}
-	
-	public void dividirImagens (Imagem[] imgs){
-		Imagem [] treino = new Imagem[5296];
-		Imagem [] test = new Imagem[2648];
+
+	public void dividirImagens(Imagem[] imgs) {
+		Imagem[] treino = new Imagem[5296];
+		Imagem[] test = new Imagem[2648];
 		int indTreino = 0;
 		int IndTest = 0;
-		
-		for(int aviaoTreino=0 ; aviaoTreino < 545 ; aviaoTreino++){
+
+		for (int aviaoTreino = 0; aviaoTreino < 545; aviaoTreino++) {
 			treino[indTreino] = imgs[aviaoTreino];
 			indTreino++;
 		}
-		
-		for(int aviaoTest=545 ; aviaoTest < 817 ; aviaoTest++){
+
+		for (int aviaoTest = 545; aviaoTest < 817; aviaoTest++) {
 			imgs[aviaoTest].setClasse(null);
 			test[IndTest] = imgs[aviaoTest];
 			IndTest++;
 		}
-		
-		for(int carroTreino=817 ; carroTreino < 1417 ; carroTreino++){
+
+		for (int carroTreino = 817; carroTreino < 1417; carroTreino++) {
 			treino[indTreino] = imgs[carroTreino];
 			indTreino++;
 		}
-		
-		for(int carroTest=1417 ; carroTest < 1717 ; carroTest++){
+
+		for (int carroTest = 1417; carroTest < 1717; carroTest++) {
 			imgs[carroTest].setClasse(null);
 			test[IndTest] = imgs[carroTest];
 			IndTest++;
 		}
-		
-		for(int passaroTreino=1717 ; passaroTreino < 2312 ; passaroTreino++){
+
+		for (int passaroTreino = 1717; passaroTreino < 2312; passaroTreino++) {
 			treino[indTreino] = imgs[passaroTreino];
 			indTreino++;
 		}
-		
-		for(int passaroTest = 2312 ; passaroTest< 2610 ; passaroTest++){
+
+		for (int passaroTest = 2312; passaroTest < 2610; passaroTest++) {
 			imgs[passaroTest].setClasse(null);
-			test[IndTest] = imgs [passaroTest];
+			test[IndTest] = imgs[passaroTest];
 			IndTest++;
 		}
-		
-		for (int gatoTreino = 2610 ; gatoTreino < 3089 ; gatoTreino++){
+
+		for (int gatoTreino = 2610; gatoTreino < 3089; gatoTreino++) {
 			treino[indTreino] = imgs[gatoTreino];
 			indTreino++;
 		}
-		
-		for(int gatoTest = 3089 ; gatoTest < 3329 ; gatoTest++){
+
+		for (int gatoTest = 3089; gatoTest < 3329; gatoTest++) {
 			imgs[gatoTest].setClasse(null);
 			test[IndTest] = imgs[gatoTest];
 			IndTest++;
 		}
 
-		for (int veadoTreino = 3329 ; veadoTreino < 3797 ; veadoTreino++){
+		for (int veadoTreino = 3329; veadoTreino < 3797; veadoTreino++) {
 			treino[indTreino] = imgs[veadoTreino];
 			indTreino++;
 		}
 
-		for (int veadoTest = 3797 ; veadoTest < 4031 ; veadoTest++){
+		for (int veadoTest = 3797; veadoTest < 4031; veadoTest++) {
 			imgs[veadoTest].setClasse(null);
 			test[IndTest] = imgs[veadoTest];
 			IndTest++;
 		}
 
-		for(int cachorroTreino = 4031 ; cachorroTreino < 4536 ; cachorroTreino++){
+		for (int cachorroTreino = 4031; cachorroTreino < 4536; cachorroTreino++) {
 			treino[indTreino] = imgs[cachorroTreino];
 			indTreino++;
 		}
 
-		for (int cachorroTest = 4536 ; cachorroTest < 4788 ; cachorroTest++){
+		for (int cachorroTest = 4536; cachorroTest < 4788; cachorroTest++) {
 			imgs[cachorroTest].setClasse(null);
 			test[IndTest] = imgs[cachorroTest];
 			IndTest++;
 		}
 
-		for (int sapoTreino = 4788 ; sapoTreino < 5326 ; sapoTreino++){
+		for (int sapoTreino = 4788; sapoTreino < 5326; sapoTreino++) {
 			treino[indTreino] = imgs[sapoTreino];
 			indTreino++;
 		}
 
-		for (int sapoTest = 5326 ; sapoTest < 5595 ; sapoTest++){
+		for (int sapoTest = 5326; sapoTest < 5595; sapoTest++) {
 			imgs[sapoTest].setClasse(null);
 			test[IndTest] = imgs[sapoTest];
 			IndTest++;
 		}
 
-		for (int cavaloTreino = 5595 ; cavaloTreino < 6040 ; cavaloTreino++){
+		for (int cavaloTreino = 5595; cavaloTreino < 6040; cavaloTreino++) {
 			treino[indTreino] = imgs[cavaloTreino];
 			indTreino++;
 		}
 
-		for (int cavaloTest = 6040 ; cavaloTest < 6262 ; cavaloTest++){
+		for (int cavaloTest = 6040; cavaloTest < 6262; cavaloTest++) {
 			imgs[cavaloTest].setClasse(null);
 			test[IndTest] = imgs[cavaloTest];
 			IndTest++;
 		}
 
-		for (int navioTreino = 6262 ; navioTreino < 6830 ; navioTreino++){
+		for (int navioTreino = 6262; navioTreino < 6830; navioTreino++) {
 			treino[indTreino] = imgs[navioTreino];
 			indTreino++;
 		}
 
-		for (int navioTest = 6830 ; navioTest < 7114 ; navioTest++){
+		for (int navioTest = 6830; navioTest < 7114; navioTest++) {
 			imgs[navioTest].setClasse(null);
 			test[IndTest] = imgs[navioTest];
 			IndTest++;
 		}
 
-		for (int caminhaoTreino = 7114 ; caminhaoTreino < 7667 ; caminhaoTreino++){
+		for (int caminhaoTreino = 7114; caminhaoTreino < 7667; caminhaoTreino++) {
 			treino[indTreino] = imgs[caminhaoTreino];
 			indTreino++;
 		}
 
-		for (int caminhaoTest = 7667 ; caminhaoTest < 7944 ; caminhaoTest++){
+		for (int caminhaoTest = 7667; caminhaoTest < 7944; caminhaoTest++) {
 			imgs[caminhaoTest].setClasse(null);
 			test[IndTest] = imgs[caminhaoTest];
 			IndTest++;
 		}
-		
+
 		this.setImagensTreinamento(treino);
 		this.setImagensTest(test);
-		
-		//PERCENTUAL USADO PARA O TREINO FOI DE 2/3 E PARA O TESTE FOI DE 1/3, DAS IMAGENS
-		//545(treino) 272(test)- aviao (817)
-		//600(treino) 300(test)- carro (900)
-		//595(treino) 298(test)- passaro (893) 
-		//479(treino) 240(test)- gato (719)
-		//468(treino) 234(test)- veado (702)
-		//505(treino) 252(test)- cachorro (757)
-		//538(treino) 269(test)- sapo (807) 
-		//445(treino) 222(test)- cavalo (667) 
-		//568(treino) 284(test)- navio (852) 
-		//553(treino) 277(test)- caminhao (830)
+
+		// PERCENTUAL USADO PARA O TREINO FOI DE 2/3 E PARA O TESTE FOI DE 1/3,
+		// DAS IMAGENS
+		// 545(treino) 272(test)- aviao (817)
+		// 600(treino) 300(test)- carro (900)
+		// 595(treino) 298(test)- passaro (893)
+		// 479(treino) 240(test)- gato (719)
+		// 468(treino) 234(test)- veado (702)
+		// 505(treino) 252(test)- cachorro (757)
+		// 538(treino) 269(test)- sapo (807)
+		// 445(treino) 222(test)- cavalo (667)
+		// 568(treino) 284(test)- navio (852)
+		// 553(treino) 277(test)- caminhao (830)
 	}
 
-	//Calcula a distancia Euclidiana Ponderada entre duas imagens
+	// Calcula a distancia Euclidiana Ponderada entre duas imagens
 	public double distanciaEuclidianaPonderada(Imagem imgA, Imagem imgB) {
 		double soma = 0;
 		double sub = 0;
 		double resultado = 0;
 		double ponderado = 0;
-		
-		
-		//somatório da distancia euclidiana
+
+		// somatório da distancia euclidiana
 		for (int i = 0; i < 256; i++) {
 			sub = imgA.getHistograma()[i] - imgB.getHistograma()[i];
 			soma += Math.pow(sub, 2);
 			sub = 0;
 		}
 		System.out.println(soma);
-			
-		//raiz do somatório
+
+		// raiz do somatório
 		resultado = Math.sqrt(soma);
 		System.out.println(resultado);
-		//ponderamento
+		// ponderamento
 		ponderado = this.ponderamento(resultado, imgA, imgB);
 		System.out.println(ponderado);
 		return ponderado;
 	}
-	
-	//ponderamento da distancia Euclidiana
-	private double ponderamento(double resultado, Imagem imgA, Imagem imgB) {
-		double w, temp = 0,resultadoPonderado = 0;
 
-		//obtendo o valor do peso
-		w = 1/resultado;
-		
-		//somatório da distancia euclidiana aplicando o peso
-		for(int i = 0; i < 256; i++) {
-			temp += (w*(Math.pow((imgA.getHistograma()[i] - imgB.getHistograma()[i]), 2)));
+	// ponderamento da distancia Euclidiana
+	private double ponderamento(double resultado, Imagem imgA, Imagem imgB) {
+		double w, temp = 0, resultadoPonderado = 0;
+
+		// obtendo o valor do peso
+		w = 1 / resultado;
+
+		// somatório da distancia euclidiana aplicando o peso
+		for (int i = 0; i < 256; i++) {
+			temp += (w * (Math.pow((imgA.getHistograma()[i] - imgB.getHistograma()[i]), 2)));
 		}
-		
-		//raiz do ponderamento
+
+		// raiz do ponderamento
 		resultadoPonderado = Math.sqrt(temp);
 		return resultadoPonderado;
 	}
-	
-	//Metodo para classificação das imagens - OBS USAR UM NUMERO IMPAR PARA O K
+
+	// Metodo para classificação das imagens - OBS USAR UM NUMERO IMPAR PARA O K
 	public String classificacao(int k, Imagem[] imagemTreinamento, Imagem img) {
-		
+
 		int treinamento = imagemTreinamento.length;
-		double[]dist = new double[treinamento];
+		double[] dist = new double[treinamento];
 		double[] menoresdist = new double[treinamento];
 		int maior;
-		
-		//contador para as possiveis classes
+
+		// contador para as possiveis classes
 		int aviao = 0;
 		int carro = 0;
 		int passaro = 0;
@@ -250,87 +252,79 @@ public class KNN {
 		int cavalo = 0;
 		int navio = 0;
 		int caminhao = 0;
-		
-		//verifica se o k é par, caso seja, passa a ser impar
-		if(k % 2 == 0)
+
+		// verifica se o k é par, caso seja, passa a ser impar
+		if (k % 2 == 0)
 			k++;
-		
-		//calcula a distancia
-		for(int i = 0; i < treinamento; i++) {
+
+		// calcula a distancia
+		for (int i = 0; i < treinamento; i++) {
 			double d = this.distanciaEuclidianaPonderada(imagemTreinamento[i], img);
 			dist[i] = d;
 			menoresdist[i] = d;
 		}
-		
-		//pega as k menores distancias e verifica qual a classe da imagem para no final classificar
+
+		// pega as k menores distancias e verifica qual a classe da imagem para
+		// no final classificar
 		Arrays.sort(menoresdist);
 		for (int i = 0; i < k; i++) {
-			for(int j = 0; j < dist.length; j++) {
+			for (int j = 0; j < dist.length; j++) {
 				if (menoresdist[i] == dist[j]) {
 					if (imagemTreinamento[j].getClasse() == "'aviao'") {
 						aviao++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'carro'") {
+					} else if (imagemTreinamento[j].getClasse() == "'carro'") {
 						carro++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'passaro'") {
+					} else if (imagemTreinamento[j].getClasse() == "'passaro'") {
 						passaro++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'gato'") {
+					} else if (imagemTreinamento[j].getClasse() == "'gato'") {
 						gato++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'veado'") {
+					} else if (imagemTreinamento[j].getClasse() == "'veado'") {
 						veado++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'cachorro'") {
+					} else if (imagemTreinamento[j].getClasse() == "'cachorro'") {
 						cachorro++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'sapo'") {
+					} else if (imagemTreinamento[j].getClasse() == "'sapo'") {
 						sapo++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'cavalo'") {
+					} else if (imagemTreinamento[j].getClasse() == "'cavalo'") {
 						cavalo++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'navio'") {
+					} else if (imagemTreinamento[j].getClasse() == "'navio'") {
 						navio++;
-					}
-					else if (imagemTreinamento[j].getClasse() == "'caminhao'") {
+					} else if (imagemTreinamento[j].getClasse() == "'caminhao'") {
 						caminhao++;
 					}
 				}
 			}
 		}
-		
+
 		maior = aviao;
-		if(maior < carro)
+		if (maior < carro)
 			maior = carro;
-		if(maior < passaro)
+		if (maior < passaro)
 			maior = passaro;
-		if(maior < gato)
+		if (maior < gato)
 			maior = gato;
-		if(maior < veado)
+		if (maior < veado)
 			maior = veado;
-		if(maior < cachorro)
+		if (maior < cachorro)
 			maior = cachorro;
-		if(maior < sapo)
+		if (maior < sapo)
 			maior = sapo;
 		if (maior < cavalo)
 			maior = cavalo;
-		if(maior < navio)
+		if (maior < navio)
 			maior = navio;
-		if(maior < caminhao)
+		if (maior < caminhao)
 			maior = caminhao;
 
-		//Retorna a string com a classe da imagem
+		// Retorna a string com a classe da imagem
 		if (maior == aviao)
 			return "'aviao'";
-		else if(maior == carro)
+		else if (maior == carro)
 			return "'carro'";
 		else if (maior == passaro)
 			return "'passaro'";
-		else if(maior == gato)
+		else if (maior == gato)
 			return "'gato'";
-		else if(maior == veado)
+		else if (maior == veado)
 			return "'veado'";
 		else if (maior == cachorro)
 			return "'cachorro'";
@@ -342,7 +336,7 @@ public class KNN {
 			return "'navio'";
 		else if (maior == caminhao)
 			return "'caminhao'";
-		else 
+		else
 			return "NAO CLASSIFICADO";
 	}
 
@@ -370,5 +364,3 @@ public class KNN {
 		this.imagensTest = imagens;
 	}
 }
-
-
