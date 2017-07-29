@@ -47,13 +47,14 @@ public class KNN {
 		}
 		img = null;
 
-		for (int i = 0; i < 7944; i++) {
-			img = imgs[i];
-			for (int w = 0; w < 256; w++) {
-				System.out.print(img.getHistograma()[w]);
-			}
-			System.out.println();
-		}
+//		for (int i = 0; i < 7944; i++) {
+//			img = imgs[i];
+//			for (int w = 0; w < 256; w++) {
+//				System.out.print(img.getHistograma()[w]);
+//			}
+//			System.out.println();
+//		}
+		
 		arq.close();
 		file.close();
 		return imgs;
@@ -205,14 +206,13 @@ public class KNN {
 			soma += Math.pow(sub, 2);
 			sub = 0;
 		}
-		System.out.println(soma);
 
 		// raiz do somatório
 		resultado = Math.sqrt(soma);
-		System.out.println(resultado);
+		
 		// ponderamento
 		ponderado = this.ponderamento(resultado, imgA, imgB);
-		System.out.println(ponderado);
+		
 		return ponderado;
 	}
 
