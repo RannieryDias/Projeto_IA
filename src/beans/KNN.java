@@ -9,12 +9,12 @@ import java.util.Arrays;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 public class KNN {
-	private Imagem[] imagens;
+	//private Imagem[] imagens;
 	private Imagem[] imagensTreinamento;
 	private Imagem[] imagensTest;
 
-	public KNN(Imagem[] imagens) {
-		this.imagens = imagens;
+	public KNN() {
+		
 	}
 
 	public static Imagem[] LerArquivo() throws NumberFormatException, IOException {
@@ -46,14 +46,6 @@ public class KNN {
 			img = null;
 		}
 		img = null;
-
-//		for (int i = 0; i < 7944; i++) {
-//			img = imgs[i];
-//			for (int w = 0; w < 256; w++) {
-//				System.out.print(img.getHistograma()[w]);
-//			}
-//			System.out.println();
-//		}
 		
 		arq.close();
 		file.close();
@@ -64,116 +56,116 @@ public class KNN {
 		Imagem[] treino = new Imagem[5296];
 		Imagem[] test = new Imagem[2648];
 		int indTreino = 0;
-		int IndTest = 0;
+		int indTest = 0;
 
 		for (int aviaoTreino = 0; aviaoTreino < 545; aviaoTreino++) {
 			treino[indTreino] = imgs[aviaoTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int aviaoTest = 545; aviaoTest < 817; aviaoTest++) {
-			imgs[aviaoTest].setClasse(null);
-			test[IndTest] = imgs[aviaoTest];
-			IndTest++;
+			test[indTest] = imgs[aviaoTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
-
+		
 		for (int carroTreino = 817; carroTreino < 1417; carroTreino++) {
 			treino[indTreino] = imgs[carroTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int carroTest = 1417; carroTest < 1717; carroTest++) {
-			imgs[carroTest].setClasse(null);
-			test[IndTest] = imgs[carroTest];
-			IndTest++;
+			test[indTest] = imgs[carroTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		for (int passaroTreino = 1717; passaroTreino < 2312; passaroTreino++) {
 			treino[indTreino] = imgs[passaroTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int passaroTest = 2312; passaroTest < 2610; passaroTest++) {
-			imgs[passaroTest].setClasse(null);
-			test[IndTest] = imgs[passaroTest];
-			IndTest++;
+			test[indTest] = imgs[passaroTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		for (int gatoTreino = 2610; gatoTreino < 3089; gatoTreino++) {
 			treino[indTreino] = imgs[gatoTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int gatoTest = 3089; gatoTest < 3329; gatoTest++) {
-			imgs[gatoTest].setClasse(null);
-			test[IndTest] = imgs[gatoTest];
-			IndTest++;
+			test[indTest] = imgs[gatoTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		for (int veadoTreino = 3329; veadoTreino < 3797; veadoTreino++) {
 			treino[indTreino] = imgs[veadoTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int veadoTest = 3797; veadoTest < 4031; veadoTest++) {
-			imgs[veadoTest].setClasse(null);
-			test[IndTest] = imgs[veadoTest];
-			IndTest++;
+			test[indTest] = imgs[veadoTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		for (int cachorroTreino = 4031; cachorroTreino < 4536; cachorroTreino++) {
 			treino[indTreino] = imgs[cachorroTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int cachorroTest = 4536; cachorroTest < 4788; cachorroTest++) {
-			imgs[cachorroTest].setClasse(null);
-			test[IndTest] = imgs[cachorroTest];
-			IndTest++;
+			test[indTest] = imgs[cachorroTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		for (int sapoTreino = 4788; sapoTreino < 5326; sapoTreino++) {
 			treino[indTreino] = imgs[sapoTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int sapoTest = 5326; sapoTest < 5595; sapoTest++) {
-			imgs[sapoTest].setClasse(null);
-			test[IndTest] = imgs[sapoTest];
-			IndTest++;
+			test[indTest] = imgs[sapoTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		for (int cavaloTreino = 5595; cavaloTreino < 6040; cavaloTreino++) {
 			treino[indTreino] = imgs[cavaloTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int cavaloTest = 6040; cavaloTest < 6262; cavaloTest++) {
-			imgs[cavaloTest].setClasse(null);
-			test[IndTest] = imgs[cavaloTest];
-			IndTest++;
+			test[indTest] = imgs[cavaloTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		for (int navioTreino = 6262; navioTreino < 6830; navioTreino++) {
 			treino[indTreino] = imgs[navioTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int navioTest = 6830; navioTest < 7114; navioTest++) {
-			imgs[navioTest].setClasse(null);
-			test[IndTest] = imgs[navioTest];
-			IndTest++;
+			test[indTest] = imgs[navioTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		for (int caminhaoTreino = 7114; caminhaoTreino < 7667; caminhaoTreino++) {
 			treino[indTreino] = imgs[caminhaoTreino];
 			indTreino++;
 		}
-
+		//FOI
 		for (int caminhaoTest = 7667; caminhaoTest < 7944; caminhaoTest++) {
-			imgs[caminhaoTest].setClasse(null);
-			test[IndTest] = imgs[caminhaoTest];
-			IndTest++;
+			test[indTest] = imgs[caminhaoTest];
+			test[indTest].setClasse(null);
+			indTest++;
 		}
 
 		this.setImagensTreinamento(treino);
@@ -351,14 +343,6 @@ public class KNN {
 		return retorno;
 	}
 
-	public Imagem[] getImagens() {
-		return imagens;
-	}
-
-	public void setImagens(Imagem[] imagens) {
-		this.imagens = imagens;
-	}
-
 	public Imagem[] getImagensTreinamento() {
 		return imagensTreinamento;
 	}
@@ -372,6 +356,6 @@ public class KNN {
 	}
 
 	public void setImagensTest(Imagem[] imagens) {
-		this.imagensTest = imagens;
+		this.imagensTest = imagens;		
 	}
 }
