@@ -236,10 +236,12 @@ public class KNN {
 	// Metodo para classificação das imagens - OBS USAR UM NUMERO IMPAR PARA O K
 	public String classificacao(int k, Imagem[] imagemTreinamento, Imagem img) {
 
+		String retorno = "NAO CLASSIFICADO";
+		int maior;
 		int treinamento = imagemTreinamento.length;
 		double[] dist = new double[treinamento];
 		double[] menoresdist = new double[treinamento];
-		int maior;
+		
 
 		// contador para as possiveis classes
 		int aviao = 0;
@@ -267,77 +269,86 @@ public class KNN {
 		// pega as k menores distancias e verifica qual a classe da imagem para
 		// no final classificar
 		Arrays.sort(menoresdist);
+		
 		for (int i = 0; i < k; i++) {
 			for (int j = 0; j < dist.length; j++) {
 				if (menoresdist[i] == dist[j]) {
-					if (imagemTreinamento[j].getClasse() == "'aviao'") {
+					if (imagemTreinamento[j].getClasse().equals("'aviao'")) {
 						aviao++;
-					} else if (imagemTreinamento[j].getClasse() == "'carro'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'carro'")) {
 						carro++;
-					} else if (imagemTreinamento[j].getClasse() == "'passaro'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'passaro'")){
 						passaro++;
-					} else if (imagemTreinamento[j].getClasse() == "'gato'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'gato'")) {
 						gato++;
-					} else if (imagemTreinamento[j].getClasse() == "'veado'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'veado'")) {
 						veado++;
-					} else if (imagemTreinamento[j].getClasse() == "'cachorro'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'cachorro'")) {
 						cachorro++;
-					} else if (imagemTreinamento[j].getClasse() == "'sapo'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'sapo'")) {
 						sapo++;
-					} else if (imagemTreinamento[j].getClasse() == "'cavalo'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'cavalo'")) {
 						cavalo++;
-					} else if (imagemTreinamento[j].getClasse() == "'navio'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'navio'")) {
 						navio++;
-					} else if (imagemTreinamento[j].getClasse() == "'caminhao'") {
+					} else if (imagemTreinamento[j].getClasse().equals("'caminhao'")) {
 						caminhao++;
 					}
 				}
 			}
 		}
-
-		maior = aviao;
-		if (maior < carro)
+		
+		maior = Integer.MIN_VALUE;
+		if(maior < aviao){
+			maior = aviao;
+			retorno = "'aviao'";
+		}
+		
+		if (maior < carro){
 			maior = carro;
-		if (maior < passaro)
+			retorno = "'carro'";
+		}
+		
+		if (maior < passaro){
 			maior = passaro;
-		if (maior < gato)
+			retorno = "'passaro'";
+		}
+		
+		if (maior < gato){
 			maior = gato;
-		if (maior < veado)
+			retorno = "'gato'";
+		}
+		
+		if (maior < veado){
 			maior = veado;
-		if (maior < cachorro)
+			retorno = "'veado'";
+		}
+		
+		if (maior < cachorro){
 			maior = cachorro;
-		if (maior < sapo)
+			retorno = "'cachorro'";
+		}
+		
+		if (maior < sapo){
 			maior = sapo;
-		if (maior < cavalo)
+			retorno = "'sapo'";
+		}
+		
+		if (maior < cavalo){
 			maior = cavalo;
-		if (maior < navio)
+			retorno = "'cavalo'";
+		}
+		
+		if (maior < navio){
 			maior = navio;
-		if (maior < caminhao)
+			retorno = "'navio'";
+		}
+		if (maior < caminhao){
 			maior = caminhao;
-
-		// Retorna a string com a classe da imagem
-		if (maior == aviao)
-			return "'aviao'";
-		else if (maior == carro)
-			return "'carro'";
-		else if (maior == passaro)
-			return "'passaro'";
-		else if (maior == gato)
-			return "'gato'";
-		else if (maior == veado)
-			return "'veado'";
-		else if (maior == cachorro)
-			return "'cachorro'";
-		else if (maior == sapo)
-			return "'sapo'";
-		else if (maior == cavalo)
-			return "'cavalo'";
-		else if (maior == navio)
-			return "'navio'";
-		else if (maior == caminhao)
-			return "'caminhao'";
-		else
-			return "NAO CLASSIFICADO";
+			retorno = "'caminhao'";
+		}
+		
+		return retorno;
 	}
 
 	public Imagem[] getImagens() {

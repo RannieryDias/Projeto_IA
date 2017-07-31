@@ -13,7 +13,7 @@ public class Principal {
 		KNN knn = new KNN (imgs);
 		knn.dividirImagens(imgs);
 		
-		System.out.println(knn.classificacao(5, knn.getImagensTreinamento(), knn.getImagensTest()[0]));
+		System.out.println(knn.classificacao(5, knn.getImagensTreinamento(), knn.getImagensTest()[567]));
 		
 	}
 }
