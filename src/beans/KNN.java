@@ -223,7 +223,7 @@ public class KNN {
 		// raiz do ponderamento
 		resultadoPonderado = Math.sqrt(temp);
 		return resultadoPonderado;
-	}
+	}//*/
 
 	// Metodo para classificação das imagens - OBS USAR UM NUMERO IMPAR PARA O K
 	public String classificacao(int k, Imagem[] imagemTreinamento, Imagem img) {
@@ -264,7 +264,7 @@ public class KNN {
 		
 		for (int i = 0; i < k; i++) {
 			for (int j = 0; j < dist.length; j++) {
-				if (menoresdist[i] == dist[j]) {
+				if(Double.compare(menoresdist[i], dist[j]) == 0) {																			//if (menoresdist[i] == dist[j]) {
 					if (imagemTreinamento[j].getClasse().equals("'aviao'")) {
 						aviao++;
 					} else if (imagemTreinamento[j].getClasse().equals("'carro'")) {
