@@ -10,7 +10,7 @@ public class Principal {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		long inicio = 0;
 		long fim = 0;
-		int percentualDeAcerto = 0;
+		float percentualDeAcerto = 0;
 		long tempoDeExec = 0;
 		
 		Imagem[] imgs = KNN.LerArquivo(); 
