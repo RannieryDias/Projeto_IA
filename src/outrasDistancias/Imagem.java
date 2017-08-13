@@ -1,4 +1,4 @@
-package beans;
+package outrasDistancias;
 
 public class Imagem {
 	private int[]  histograma;

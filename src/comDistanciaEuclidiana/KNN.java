@@ -1,4 +1,4 @@
-package beans;
+package comDistanciaEuclidiana;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

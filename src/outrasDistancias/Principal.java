@@ -1,4 +1,4 @@
-package beans;
+package outrasDistancias;
 
 import java.io.IOException;
 import java.util.Random;
@@ -10,7 +10,7 @@ public class Principal {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		long inicio = 0;
 		long fim = 0;
-		float percentualDeAcerto = 0;
+		int percentualDeAcerto = 0;
 		long tempoDeExec = 0;
 		
 		Imagem[] imgs = KNN.LerArquivo(); 
@@ -18,7 +18,7 @@ public class Principal {
 		for(int i = 0; i < classDasImgs.length; i++)
 			classDasImgs[i] = imgs[i].getClasse();
 		
-		int k = 5; 			 //PARAMETRO DO KNN;
+		int k = 3; 			 //PARAMETRO DO KNN;
 		KNN knn = new KNN ();
 		inicio = System.currentTimeMillis();
 		knn.dividirImagens(imgs);
