@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
@@ -58,8 +59,35 @@ public class KNN {
 		int indTreino = 0;
 		int indTest = 0;
 
-		for (int aviaoTreino = 0; aviaoTreino < 545; aviaoTreino++) {
-			treino[indTreino] = imgs[aviaoTreino];
+		for (int aviaoTreino = 0; aviaoTreino < 817; aviaoTreino++) {
+			Random rand = new Random();
+			int verificaRepetido[] = null;
+			int numeroAleatorio;
+			int flag = 0;
+			int parada = 0;
+			
+			
+			for(int i = 0; i < 5296; i++) {
+				verificaRepetido[i] = -1;
+			}
+			while (parada < 1) {
+				int temp = rand.nextInt(817);
+				for(int i = 0; i < 5296; i++) {
+					if (verificaRepetido[i] == temp) {
+						flag = 1;
+					}
+				}
+				if(flag == 0) {
+					for(int i = 0; i < 5296; i++) {
+						if (verificaRepetido[i] == -1) {
+							verificaRepetido[i] = temp;
+						}
+					}
+				}
+			
+			}
+				
+			/*treino[rand] = imgs[rand];*/
 			indTreino++;
 		}
 		//FOI
@@ -184,7 +212,36 @@ public class KNN {
 		// 568(treino) 284(test)- navio (852)
 		// 553(treino) 277(test)- caminhao (830)
 	}
-
+	
+	// Calcula a distancia de Manhattan
+	public double distanciaManhattan(Imagem imgA, Imagem imgB) {
+		double soma = 0; 
+		double subtracao = 0;
+		
+		for(int i = 0; i < 256; i++) {
+			subtracao = imgA.getHistograma()[i] - imgB.getHistograma()[i];
+			soma += subtracao;
+		}
+		
+		return soma;
+	}
+	
+	//Calcula a distancia de Manhattan ponderada
+	public double distanciaManhattanPonderada(Imagem imgA, Imagem imgB) {
+		double ponderado = 0;
+		double dist = 0;
+		double w = 0;
+		
+		dist = distanciaManhattan(imgA, imgB);
+		w = 1 / dist;
+		
+		for (int i = 0; i < 256; i++) {
+			ponderado += (w*(imgA.getHistograma()[i]- imgB.getHistograma()[i]));	
+		}
+		return ponderado;
+	}
+	
+	
 	// Calcula a distancia Euclidiana Ponderada entre duas imagens
 	public double distanciaEuclidianaPonderada(Imagem imgA, Imagem imgB) {
 		double soma = 0;
@@ -192,14 +249,14 @@ public class KNN {
 		double resultado = 0;
 		double ponderado = 0;
 
-		// somatório da distancia euclidiana
+		// somatï¿½rio da distancia euclidiana
 		for (int i = 0; i < 256; i++) {
 			sub = imgA.getHistograma()[i] - imgB.getHistograma()[i];
 			soma += Math.pow(sub, 2);
 			sub = 0;
 		}
 
-		// raiz do somatório
+		// raiz do somatï¿½rio
 		resultado = Math.sqrt(soma);
 		
 		// ponderamento
@@ -215,7 +272,7 @@ public class KNN {
 		// obtendo o valor do peso
 		w = 1 / resultado;
 
-		// somatório da distancia euclidiana aplicando o peso
+		// somatï¿½rio da distancia euclidiana aplicando o peso
 		for (int i = 0; i < 256; i++) {
 			temp += (w * (Math.pow((imgA.getHistograma()[i] - imgB.getHistograma()[i]), 2)));
 		}
@@ -225,7 +282,7 @@ public class KNN {
 		return resultadoPonderado;
 	}//*/
 
-	// Metodo para classificação das imagens - OBS USAR UM NUMERO IMPAR PARA O K
+	// Metodo para classificaï¿½ï¿½o das imagens - OBS USAR UM NUMERO IMPAR PARA O K
 	public String classificacao(int k, Imagem[] imagemTreinamento, Imagem img) {
 
 		String retorno = "NAO CLASSIFICADO";
@@ -247,17 +304,26 @@ public class KNN {
 		int navio = 0;
 		int caminhao = 0;
 
-		// verifica se o k é par, caso seja, passa a ser impar
+		// verifica se o k ï¿½ par, caso seja, passa a ser impar
 		if (k % 2 == 0)
 			k++;
 
-		// calcula a distancia
+		// faz o calculo da distancia euclidiana ponderada
+//		for (int i = 0; i < treinamento; i++) {
+//			double d = this.distanciaEuclidianaPonderada(imagemTreinamento[i], img);
+//			dist[i] = d;
+//			menoresdist[i] = d;
+//		}
+		
+		//faz o calculo da distancia de manhattan
 		for (int i = 0; i < treinamento; i++) {
-			double d = this.distanciaEuclidianaPonderada(imagemTreinamento[i], img);
+			double d = this.distanciaManhattanPonderada(imagemTreinamento[i], img);
 			dist[i] = d;
 			menoresdist[i] = d;
 		}
 
+		
+		
 		// pega as k menores distancias e verifica qual a classe da imagem para
 		// no final classificar
 		Arrays.sort(menoresdist);
