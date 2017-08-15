@@ -55,7 +55,7 @@ public class KNN {
 
 	public void dividirImagens(Imagem[] imgs) {
 		Imagem[] treino = new Imagem[5296];
-		String[] classes = new String [5296];
+		String[] classes = new String [5296];  //VARIAVEL PARA FORÇAR A NAO SETAR AS CLASSES PRA NULL
 		Imagem[] test = new Imagem[2648];
 		int[] numerosAleatorios = new int[7944];
 		int indTreino = 0;
@@ -109,7 +109,7 @@ public class KNN {
 				//preenche o vetor de treino com os numeros sorteados
 				if(parada == true) {
 					for(int i = 0; i < 545; i++) {
-						classes[i] = imgs[numerosAleatorios[i]].getClasse();
+						classes[i] = imgs[numerosAleatorios[i]].getClasse(); //ANTES DE MEXER COM AS IMAGENS SALVA LOGO A CLASSE DAS MESMAS 
 						treino[indTreino] = imgs[numerosAleatorios[i]];
 						indTreino++;
 					}
@@ -626,7 +626,7 @@ public class KNN {
 			
 
 		this.setImagensTreinamento(treino);
-		for (int i = 0; i < this.getImagensTreinamento().length; i++) {
+		for (int i = 0; i < this.getImagensTreinamento().length; i++) { //APOIS SETTAR O ATRIBUTO NA LINHA ANTERIOR... FORÇA A ELE TER CLASSES DIFERENTES DE NULL
 			this.getImagensTreinamento()[i].setClasse(classes[i]);
 		}
 		for (int i = 0; i < this.getImagensTreinamento().length; i++) {
