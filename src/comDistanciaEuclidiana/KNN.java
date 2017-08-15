@@ -59,6 +59,8 @@ public class KNN {
 		int indTreino = 0;
 		int indTest = 0;
 
+		
+		//divisão de avião
 		for (int aviaoTreino = 0; aviaoTreino < 817; aviaoTreino++) {
 			Random rand = new Random();
 			int[] numerosAleatorios = new int[817];
@@ -74,9 +76,9 @@ public class KNN {
 			//pega numeros aleatorios
 			while (parada < 1) {
 				int temp = rand.nextInt(817);
-				System.out.println("teste");
+
 				//verifica se o numero sorteado já aconteceu antes
-				for(int i = 0; i < 545; i++) {
+				for(int i = 0; i < 817; i++) {
 					if (numerosAleatorios[i] == temp) {
 						flag = 1;
 					}
@@ -105,7 +107,7 @@ public class KNN {
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 0; i < 545; i++) {
 				treino[i] = imgs[numerosAleatorios[i]];
-				System.out.println(treino.equals(treino[i]));
+				System.out.println(treino[i].equals(imgs[i]));
 			}
 			for(int i = 545; i < 817; i++) {
 				test[i] = imgs[numerosAleatorios[i]];
@@ -113,96 +115,465 @@ public class KNN {
 			}
 		}
 		
-		//FOI
 		
-		for (int carroTreino = 817; carroTreino < 1417; carroTreino++) {
-			treino[indTreino] = imgs[carroTreino];
-			indTreino++;
+		//CARRO
+		for (int carroTreino = 817; carroTreino < 1717; carroTreino++) {
+			Random rand = new Random();
+			int[] numerosAleatorios = new int[1717];
+			int flag = 0;
+			int parada = 0;
+			int tamanhoVet = 817;
+			
+
+			//preenche o vetor com -1 para fazer a validação do vetor
+			for(int i = 817; i < 1717; i++) {
+				numerosAleatorios[i] = -1;
+			}
+			
+			//pega numeros aleatorios
+			while (parada < 1) {
+				int temp = rand.nextInt(1717 - 817 + 1) + 817;
+				
+				//verifica se o numero sorteado já aconteceu antes
+				for(int i = 817; i < 1717; i++) {
+					if (numerosAleatorios[i] == temp) {
+						flag = 1;
+					}
+				}
+				
+				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
+				if(flag == 0) {
+					for(int i = 817; i < 1717; i++) {
+						if (numerosAleatorios[i] == -1) {
+							numerosAleatorios[i] = temp;
+							tamanhoVet++;
+						}
+					}
+				}
+				
+				//checa se o vetor foi preenchido
+				if(tamanhoVet == numerosAleatorios.length) {
+					parada = 1;
+				}
+				//seta a flag para 0 novamente
+				flag = 0;
+				
+			}
+			
+
+		
+			//preenche o vetor de treino com os numeros sorteados
+			for(int i = 817; i < 1417; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				//System.out.println("testando " + treino[i].equals(imgs[i]));
+			}
+			for(int i = 1417; i < 1717; i++) {
+				test[i] = imgs[numerosAleatorios[i]];
+				test[i].setClasse(null);
+			}
 		}
-		//FOI
-		for (int carroTest = 1417; carroTest < 1717; carroTest++) {
-			test[indTest] = imgs[carroTest];
-			test[indTest].setClasse(null);
-			indTest++;
+		
+		//PASSARO
+		for (int passaroTreino = 1717; passaroTreino < 2610; passaroTreino++) {
+			Random rand = new Random();
+			int[] numerosAleatorios = new int[2610];
+			int flag = 0;
+			int parada = 0;
+			int tamanhoVet = 1717;
+			
+
+			//preenche o vetor com -1 para fazer a validação do vetor
+			for(int i = 1717; i < 2610; i++) {
+				numerosAleatorios[i] = -1;
+			}
+			
+			//pega numeros aleatorios
+			while (parada < 1) {
+				int temp = rand.nextInt(2610 - 1717 + 1) + 1717;
+				//System.out.println(temp);
+				//verifica se o numero sorteado já aconteceu antes
+				for(int i = 1717; i < 2610; i++) {
+					if (numerosAleatorios[i] == temp) {
+						flag = 1;
+					}
+				}
+				
+				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
+				if(flag == 0) {
+					for(int i = 1717; i < 2610; i++) {
+						if (numerosAleatorios[i] == -1) {
+							numerosAleatorios[i] = temp;
+							tamanhoVet++;
+						}
+					}
+				}
+				
+				//checa se o vetor foi preenchido
+				if(tamanhoVet == numerosAleatorios.length) {
+					parada = 1;
+				}
+				//seta a flag para 0 novamente
+				flag = 0;
+				
+			}
+			
+
+		
+			//preenche o vetor de treino com os numeros sorteados
+			for(int i = 1717; i < 2312; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				//System.out.println("testando " + treino[i].equals(imgs[i]));
+			}
+			for(int i = 2312; i < 2610; i++) {
+				test[i] = imgs[numerosAleatorios[i]];
+				test[i].setClasse(null);
+			}
 		}
 
-		for (int passaroTreino = 1717; passaroTreino < 2312; passaroTreino++) {
-			treino[indTreino] = imgs[passaroTreino];
-			indTreino++;
-		}
-		//FOI
-		for (int passaroTest = 2312; passaroTest < 2610; passaroTest++) {
-			test[indTest] = imgs[passaroTest];
-			test[indTest].setClasse(null);
-			indTest++;
+		//GATO
+
+		for (int gatoTreino = 2610; gatoTreino < 3329; gatoTreino++) {
+			Random rand = new Random();
+			int[] numerosAleatorios = new int[3329];
+			int flag = 0;
+			int parada = 0;
+			int tamanhoVet = 2610;
+			
+
+			//preenche o vetor com -1 para fazer a validação do vetor
+			for(int i = 2610; i < 3329; i++) {
+				numerosAleatorios[i] = -1;
+			}
+			
+			//pega numeros aleatorios
+			while (parada < 1) {
+				int temp = rand.nextInt(3329 - 2610 + 1) + 2610;
+				//System.out.println(temp);
+				//verifica se o numero sorteado já aconteceu antes
+				for(int i = 1717; i < 2610; i++) {
+					if (numerosAleatorios[i] == temp) {
+						flag = 1;
+					}
+				}
+				
+				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
+				if(flag == 0) {
+					for(int i = 2610; i < 3329; i++) {
+						if (numerosAleatorios[i] == -1) {
+							numerosAleatorios[i] = temp;
+							tamanhoVet++;
+						}
+					}
+				}
+				
+				//checa se o vetor foi preenchido
+				if(tamanhoVet == numerosAleatorios.length) {
+					parada = 1;
+				}
+				//seta a flag para 0 novamente
+				flag = 0;
+				
+			}
+			
+
+		
+			//preenche o vetor de treino com os numeros sorteados
+			for(int i = 2610; i < 3089; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				//System.out.println("testando " + treino[i].equals(imgs[i]));
+			}
+			for(int i = 3089; i < 3329; i++) {
+				test[i] = imgs[numerosAleatorios[i]];
+				test[i].setClasse(null);
+			}
 		}
 
-		for (int gatoTreino = 2610; gatoTreino < 3089; gatoTreino++) {
-			treino[indTreino] = imgs[gatoTreino];
-			indTreino++;
+		//VEADO
+		for (int veadoTreino = 3329; veadoTreino < 4031; veadoTreino++) {
+			Random rand = new Random();
+			int[] numerosAleatorios = new int[4031];
+			int flag = 0;
+			int parada = 0;
+			int tamanhoVet = 3329;
+			
+
+			//preenche o vetor com -1 para fazer a validação do vetor
+			for(int i = 3329; i < 4031; i++) {
+				numerosAleatorios[i] = -1;
+			}
+			
+			//pega numeros aleatorios
+			while (parada < 1) {
+				int temp = rand.nextInt(4031 - 3329+ 1) + 3329;
+				//System.out.println(temp);
+				//verifica se o numero sorteado já aconteceu antes
+				for(int i = 3329; i < 4031; i++) {
+					if (numerosAleatorios[i] == temp) {
+						flag = 1;
+					}
+				}
+				
+				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
+				if(flag == 0) {
+					for(int i = 3329; i < 4031; i++) {
+						if (numerosAleatorios[i] == -1) {
+							numerosAleatorios[i] = temp;
+							tamanhoVet++;
+						}
+					}
+				}
+				
+				//checa se o vetor foi preenchido
+				if(tamanhoVet == numerosAleatorios.length) {
+					parada = 1;
+				}
+				//seta a flag para 0 novamente
+				flag = 0;
+				
+			}
+			
+
+		
+			//preenche o vetor de treino com os numeros sorteados
+			for(int i = 3329; i < 3797; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				//System.out.println("testando " + treino[i].equals(imgs[i]));
+			}
+			for(int i = 3797; i < 4031; i++) {
+				test[i] = imgs[numerosAleatorios[i]];
+				test[i].setClasse(null);
+			}
 		}
-		//FOI
-		for (int gatoTest = 3089; gatoTest < 3329; gatoTest++) {
-			test[indTest] = imgs[gatoTest];
-			test[indTest].setClasse(null);
-			indTest++;
+		
+		//CACHORRO
+		for (int cachorroTreino = 4031; cachorroTreino < 4788; cachorroTreino++) {
+			Random rand = new Random();
+			int[] numerosAleatorios = new int[4788];
+			int flag = 0;
+			int parada = 0;
+			int tamanhoVet = 4031;
+			
+
+			//preenche o vetor com -1 para fazer a validação do vetor
+			for(int i = 4031; i < 4788; i++) {
+				numerosAleatorios[i] = -1;
+			}
+			
+			//pega numeros aleatorios
+			while (parada < 1) {
+				int temp = rand.nextInt(4788 - 4031+ 1) + 4031;
+				//System.out.println(temp);
+				//verifica se o numero sorteado já aconteceu antes
+				for(int i = 4031; i < 4788; i++) {
+					if (numerosAleatorios[i] == temp) {
+						flag = 1;
+					}
+				}
+				
+				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
+				if(flag == 0) {
+					for(int i = 4031; i < 4788; i++) {
+						if (numerosAleatorios[i] == -1) {
+							numerosAleatorios[i] = temp;
+							tamanhoVet++;
+						}
+					}
+				}
+				
+				//checa se o vetor foi preenchido
+				if(tamanhoVet == numerosAleatorios.length) {
+					parada = 1;
+				}
+				//seta a flag para 0 novamente
+				flag = 0;
+				
+			}
+			
+
+		
+			//preenche o vetor de treino com os numeros sorteados
+			for(int i = 4031; i < 4536; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				//System.out.println("testando " + treino[i].equals(imgs[i]));
+			}
+			for(int i = 4536; i < 4788; i++) {
+				test[i] = imgs[numerosAleatorios[i]];
+				test[i].setClasse(null);
+			}
 		}
 
-		for (int veadoTreino = 3329; veadoTreino < 3797; veadoTreino++) {
-			treino[indTreino] = imgs[veadoTreino];
-			indTreino++;
-		}
-		//FOI
-		for (int veadoTest = 3797; veadoTest < 4031; veadoTest++) {
-			test[indTest] = imgs[veadoTest];
-			test[indTest].setClasse(null);
-			indTest++;
+		//SAPO
+		for (int sapoTreino = 4788; sapoTreino < 5595; sapoTreino++) {
+			Random rand = new Random();
+			int[] numerosAleatorios = new int[5595];
+			int flag = 0;
+			int parada = 0;
+			int tamanhoVet = 4788;
+			
+
+			//preenche o vetor com -1 para fazer a validação do vetor
+			for(int i = 4788; i < 5595; i++) {
+				numerosAleatorios[i] = -1;
+			}
+			
+			//pega numeros aleatorios
+			while (parada < 1) {
+				int temp = rand.nextInt(5595 - 4788 + 1) + 4788;
+				//System.out.println(temp);
+				//verifica se o numero sorteado já aconteceu antes
+				for(int i = 4788; i < 5595; i++) {
+					if (numerosAleatorios[i] == temp) {
+						flag = 1;
+					}
+				}
+				
+				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
+				if(flag == 0) {
+					for(int i = 4788; i < 5595; i++) {
+						if (numerosAleatorios[i] == -1) {
+							numerosAleatorios[i] = temp;
+							tamanhoVet++;
+						}
+					}
+				}
+				
+				//checa se o vetor foi preenchido
+				if(tamanhoVet == numerosAleatorios.length) {
+					parada = 1;
+				}
+				//seta a flag para 0 novamente
+				flag = 0;
+				
+			}
+			
+
+		
+			//preenche o vetor de treino com os numeros sorteados
+			for(int i = 4788; i < 5326; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				//System.out.println("testando " + treino[i].equals(imgs[i]));
+			}
+			for(int i = 5326; i < 5595; i++) {
+				test[i] = imgs[numerosAleatorios[i]];
+				test[i].setClasse(null);
+			}
 		}
 
-		for (int cachorroTreino = 4031; cachorroTreino < 4536; cachorroTreino++) {
-			treino[indTreino] = imgs[cachorroTreino];
-			indTreino++;
+		//CAVALO
+		for (int cavaloTreino = 5595; cavaloTreino < 6262; cavaloTreino++) {
+			Random rand = new Random();
+			int[] numerosAleatorios = new int[6262];
+			int flag = 0;
+			int parada = 0;
+			int tamanhoVet = 5595;
+			
+
+			//preenche o vetor com -1 para fazer a validação do vetor
+			for(int i = 5595; i < 6262; i++) {
+				numerosAleatorios[i] = -1;
+			}
+			
+			//pega numeros aleatorios
+			while (parada < 1) {
+				int temp = rand.nextInt(6262 - 5595 + 1) + 5595;
+				//System.out.println(temp);
+				//verifica se o numero sorteado já aconteceu antes
+				for(int i = 5595; i < 6262; i++) {
+					if (numerosAleatorios[i] == temp) {
+						flag = 1;
+					}
+				}
+				
+				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
+				if(flag == 0) {
+					for(int i = 5595; i < 6262; i++) {
+						if (numerosAleatorios[i] == -1) {
+							numerosAleatorios[i] = temp;
+							tamanhoVet++;
+						}
+					}
+				}
+				
+				//checa se o vetor foi preenchido
+				if(tamanhoVet == numerosAleatorios.length) {
+					parada = 1;
+				}
+				//seta a flag para 0 novamente
+				flag = 0;
+				
+			}
+			
+
+		
+			//preenche o vetor de treino com os numeros sorteados
+			for(int i = 5595; i < 6040; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				//System.out.println("testando " + treino[i].equals(imgs[i]));
+			}
+			for(int i = 6040; i < 6262; i++) {
+				test[i] = imgs[numerosAleatorios[i]];
+				test[i].setClasse(null);
+			}
 		}
-		//FOI
-		for (int cachorroTest = 4536; cachorroTest < 4788; cachorroTest++) {
-			test[indTest] = imgs[cachorroTest];
-			test[indTest].setClasse(null);
-			indTest++;
+		
+		//NAVIO
+		for (int navioTreino = 6262; navioTreino < 7114; navioTreino++) {
+			Random rand = new Random();
+			int[] numerosAleatorios = new int[7114];
+			int flag = 0;
+			int parada = 0;
+			int tamanhoVet = 6262;
+			
+
+			//preenche o vetor com -1 para fazer a validação do vetor
+			for(int i = 6262; i < 7114; i++) {
+				numerosAleatorios[i] = -1;
+			}
+			
+			//pega numeros aleatorios
+			while (parada < 1) {
+				int temp = rand.nextInt(7114 - 6262 + 1) + 6262;
+				//System.out.println(temp);
+				//verifica se o numero sorteado já aconteceu antes
+				for(int i = 6262; i < 7114; i++) {
+					if (numerosAleatorios[i] == temp) {
+						flag = 1;
+					}
+				}
+				
+				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
+				if(flag == 0) {
+					for(int i = 6262; i < 7114; i++) {
+						if (numerosAleatorios[i] == -1) {
+							numerosAleatorios[i] = temp;
+							tamanhoVet++;
+						}
+					}
+				}
+				
+				//checa se o vetor foi preenchido
+				if(tamanhoVet == numerosAleatorios.length) {
+					parada = 1;
+				}
+				//seta a flag para 0 novamente
+				flag = 0;
+				
+			}
+			
+
+		
+			//preenche o vetor de treino com os numeros sorteados
+			for(int i = 6262; i < 6830; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				//System.out.println("testando " + treino[i].equals(imgs[i]));
+			}
+			for(int i = 6830; i < 7114; i++) {
+				test[i] = imgs[numerosAleatorios[i]];
+				test[i].setClasse(null);
+			}
 		}
 
-		for (int sapoTreino = 4788; sapoTreino < 5326; sapoTreino++) {
-			treino[indTreino] = imgs[sapoTreino];
-			indTreino++;
-		}
-		//FOI
-		for (int sapoTest = 5326; sapoTest < 5595; sapoTest++) {
-			test[indTest] = imgs[sapoTest];
-			test[indTest].setClasse(null);
-			indTest++;
-		}
-
-		for (int cavaloTreino = 5595; cavaloTreino < 6040; cavaloTreino++) {
-			treino[indTreino] = imgs[cavaloTreino];
-			indTreino++;
-		}
-		//FOI
-		for (int cavaloTest = 6040; cavaloTest < 6262; cavaloTest++) {
-			test[indTest] = imgs[cavaloTest];
-			test[indTest].setClasse(null);
-			indTest++;
-		}
-
-		for (int navioTreino = 6262; navioTreino < 6830; navioTreino++) {
-			treino[indTreino] = imgs[navioTreino];
-			indTreino++;
-		}
-		//FOI
-		for (int navioTest = 6830; navioTest < 7114; navioTest++) {
-			test[indTest] = imgs[navioTest];
-			test[indTest].setClasse(null);
-			indTest++;
-		}
-
+		//CAMINHÃO
 		for (int caminhaoTreino = 7114; caminhaoTreino < 7667; caminhaoTreino++) {
 			treino[indTreino] = imgs[caminhaoTreino];
 			indTreino++;
