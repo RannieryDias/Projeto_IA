@@ -61,13 +61,13 @@ public class KNN {
 
 		for (int aviaoTreino = 0; aviaoTreino < 817; aviaoTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[5296];
+			int[] numerosAleatorios = new int[817];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 0;
 			
 			//preenche o vetor com -1 para fazer a validação do vetor
-			for(int i = 0; i < 5296; i++) {
+			for(int i = 0; i < 817; i++) {
 				numerosAleatorios[i] = -1;
 			}
 			
@@ -76,7 +76,7 @@ public class KNN {
 				int temp = rand.nextInt(817);
 				
 				//verifica se o numero sorteado já aconteceu antes
-				for(int i = 0; i < 5296; i++) {
+				for(int i = 0; i < 817; i++) {
 					if (numerosAleatorios[i] == temp) {
 						flag = 1;
 					}
@@ -84,7 +84,7 @@ public class KNN {
 				
 				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
 				if(flag == 0) {
-					for(int i = 0; i < 5296; i++) {
+					for(int i = 0; i < 817; i++) {
 						if (numerosAleatorios[i] == -1) {
 							numerosAleatorios[i] = temp;
 							tamanhoVet++;
