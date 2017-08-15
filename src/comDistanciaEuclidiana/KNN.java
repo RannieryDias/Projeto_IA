@@ -61,13 +61,13 @@ public class KNN {
 
 		for (int aviaoTreino = 0; aviaoTreino < 817; aviaoTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[545];
+			int[] numerosAleatorios = new int[817];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 0;
 			
 			//preenche o vetor com -1 para fazer a validação do vetor
-			for(int i = 0; i < 545; i++) {
+			for(int i = 0; i < 817; i++) {
 				numerosAleatorios[i] = -1;
 			}
 			
@@ -84,7 +84,7 @@ public class KNN {
 				
 				//se a flag for igual a 0 significa que não houve numero repetido, então o numero é salvo no vetor
 				if(flag == 0) {
-					for(int i = 0; i < 545; i++) {
+					for(int i = 0; i < 817; i++) {
 						if (numerosAleatorios[i] == -1) {
 							numerosAleatorios[i] = temp;
 							tamanhoVet++;
@@ -103,18 +103,17 @@ public class KNN {
 
 		
 			//preenche o vetor de treino com os numeros sorteados
-			for(int i = 0; i < numerosAleatorios.length; i++) {
+			for(int i = 0; i < 545; i++) {
+				treino[i] = imgs[numerosAleatorios[i]];
+				System.out.println(treino.equals(treino[i]));
+			}
+			for(int i = 545; i < 817; i++) {
 				test[i] = imgs[numerosAleatorios[i]];
-				System.out.println(test.equals(test[i]));
+				test[i].setClasse(null);
 			}
 		}
 		
 		//FOI
-		for (int aviaoTest = 545; aviaoTest < 817; aviaoTest++) {
-			test[indTest] = imgs[aviaoTest];
-			test[indTest].setClasse(null);
-			indTest++;
-		}
 		
 		for (int carroTreino = 817; carroTreino < 1417; carroTreino++) {
 			treino[indTreino] = imgs[carroTreino];
