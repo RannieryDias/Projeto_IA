@@ -106,12 +106,14 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 0; i < 545; i++) {
-				treino[i] = imgs[numerosAleatorios[i]];
-				System.out.println(treino[i].equals(imgs[i]));
+				System.out.println(indTreino );
+				treino[indTreino] = imgs[numerosAleatorios[i]];
+				indTreino++;
 			}
 			for(int i = 545; i < 817; i++) {
-				test[i] = imgs[numerosAleatorios[i]];
-				test[i].setClasse(null);
+				test[indTest] = imgs[numerosAleatorios[i]];
+				test[indTest].setClasse(null);
+				indTest++;
 			}
 		}
 		
@@ -119,10 +121,10 @@ public class KNN {
 		//CARRO
 		for (int carroTreino = 817; carroTreino < 1717; carroTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[1717];
+			int[] numerosAleatorios = new int[817];
 			int flag = 0;
 			int parada = 0;
-			int tamanhoVet = 817;
+			int tamanhoVet = 0;
 			
 
 			//preenche o vetor com -1 para fazer a validação do vetor
@@ -164,12 +166,13 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 817; i < 1417; i++) {
-				treino[i] = imgs[numerosAleatorios[i]];
-				//System.out.println("testando " + treino[i].equals(imgs[i]));
+				treino[indTreino] = imgs[numerosAleatorios[i]];
+				indTreino++;
 			}
 			for(int i = 1417; i < 1717; i++) {
-				test[i] = imgs[numerosAleatorios[i]];
-				test[i].setClasse(null);
+				test[indTest] = imgs[numerosAleatorios[i]];
+				test[indTest].setClasse(null);
+				indTest++;
 			}
 		}
 		
@@ -221,12 +224,13 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 1717; i < 2312; i++) {
-				treino[i] = imgs[numerosAleatorios[i]];
-				//System.out.println("testando " + treino[i].equals(imgs[i]));
+				treino[indTreino] = imgs[numerosAleatorios[i]];
+				indTreino++;
 			}
 			for(int i = 2312; i < 2610; i++) {
-				test[i] = imgs[numerosAleatorios[i]];
-				test[i].setClasse(null);
+				test[indTest] = imgs[numerosAleatorios[i]];
+				test[indTest].setClasse(null);
+				indTest++;
 			}
 		}
 
@@ -250,7 +254,7 @@ public class KNN {
 				int temp = rand.nextInt(3329 - 2610 + 1) + 2610;
 				//System.out.println(temp);
 				//verifica se o numero sorteado já aconteceu antes
-				for(int i = 1717; i < 2610; i++) {
+				for(int i = 2610; i < 3329; i++) {
 					if (numerosAleatorios[i] == temp) {
 						flag = 1;
 					}
@@ -279,12 +283,14 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 2610; i < 3089; i++) {
-				treino[i] = imgs[numerosAleatorios[i]];
-				//System.out.println("testando " + treino[i].equals(imgs[i]));
+				treino[indTreino] = imgs[numerosAleatorios[i]];
+				indTreino++;
 			}
 			for(int i = 3089; i < 3329; i++) {
-				test[i] = imgs[numerosAleatorios[i]];
-				test[i].setClasse(null);
+				System.out.println("aseaese");
+				test[indTest] = imgs[numerosAleatorios[i]];
+				test[indTest].setClasse(null);
+				indTest++;
 			}
 		}
 
@@ -336,12 +342,13 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 3329; i < 3797; i++) {
-				treino[i] = imgs[numerosAleatorios[i]];
-				//System.out.println("testando " + treino[i].equals(imgs[i]));
+				treino[indTreino] = imgs[numerosAleatorios[i]];
+				indTreino++;
 			}
 			for(int i = 3797; i < 4031; i++) {
-				test[i] = imgs[numerosAleatorios[i]];
-				test[i].setClasse(null);
+				test[indTest] = imgs[numerosAleatorios[i]];
+				test[indTest].setClasse(null);
+				indTest++;
 			}
 		}
 		
