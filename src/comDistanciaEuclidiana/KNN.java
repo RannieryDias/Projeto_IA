@@ -1,4 +1,4 @@
-package comDistanciaEuclidiana;
+  package comDistanciaEuclidiana;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -55,6 +55,7 @@ public class KNN {
 
 	public void dividirImagens(Imagem[] imgs) {
 		Imagem[] treino = new Imagem[5296];
+		String[] classes = new String [5296];
 		Imagem[] test = new Imagem[2648];
 		int[] numerosAleatorios = new int[7944];
 		int indTreino = 0;
@@ -108,6 +109,7 @@ public class KNN {
 				//preenche o vetor de treino com os numeros sorteados
 				if(parada == true) {
 					for(int i = 0; i < 545; i++) {
+						classes[i] = imgs[numerosAleatorios[i]].getClasse();
 						treino[indTreino] = imgs[numerosAleatorios[i]];
 						indTreino++;
 					}
@@ -621,8 +623,15 @@ public class KNN {
 				test[indTest].setClasse(null);
 				indTest++;
 			}
+			
 
 		this.setImagensTreinamento(treino);
+		for (int i = 0; i < this.getImagensTreinamento().length; i++) {
+			this.getImagensTreinamento()[i].setClasse(classes[i]);
+		}
+		for (int i = 0; i < this.getImagensTreinamento().length; i++) {
+			System.out.println(this.getImagensTreinamento()[i].getClasse());
+		}
 		this.setImagensTest(test);
 
 		// PERCENTUAL USADO PARA O TREINO FOI DE 2/3 E PARA O TESTE FOI DE 1/3,
