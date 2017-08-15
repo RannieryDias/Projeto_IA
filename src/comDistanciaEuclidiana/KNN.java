@@ -56,6 +56,7 @@ public class KNN {
 	public void dividirImagens(Imagem[] imgs) {
 		Imagem[] treino = new Imagem[5296];
 		Imagem[] test = new Imagem[2648];
+		int[] numerosAleatorios = new int[7944];
 		int indTreino = 0;
 		int indTest = 0;
 
@@ -63,7 +64,7 @@ public class KNN {
 		//divisão de avião
 		for (int aviaoTreino = 0; aviaoTreino < 817; aviaoTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[817];
+			
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 0;
@@ -102,26 +103,23 @@ public class KNN {
 				flag = 0;
 			}
 			
-
-		
-			//preenche o vetor de treino com os numeros sorteados
-			for(int i = 0; i < 545; i++) {
-				System.out.println(indTreino );
-				treino[indTreino] = imgs[numerosAleatorios[i]];
-				indTreino++;
-			}
-			for(int i = 545; i < 817; i++) {
-				test[indTest] = imgs[numerosAleatorios[i]];
-				test[indTest].setClasse(null);
-				indTest++;
-			}
 		}
 		
+		//preenche o vetor de treino com os numeros sorteados
+		for(int i = 0; i < 545; i++) {
+			System.out.println(indTreino );
+			treino[indTreino] = imgs[numerosAleatorios[i]];
+			indTreino++;
+		}
+		for(int i = 545; i < 817; i++) {
+			test[indTest] = imgs[numerosAleatorios[i]];
+			test[indTest].setClasse(null);
+			indTest++;
+		}
 		
 		//CARRO
 		for (int carroTreino = 817; carroTreino < 1717; carroTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[817];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 0;
@@ -179,7 +177,6 @@ public class KNN {
 		//PASSARO
 		for (int passaroTreino = 1717; passaroTreino < 2610; passaroTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[2610];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 1717;
@@ -238,7 +235,6 @@ public class KNN {
 
 		for (int gatoTreino = 2610; gatoTreino < 3329; gatoTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[3329];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 2610;
@@ -297,7 +293,6 @@ public class KNN {
 		//VEADO
 		for (int veadoTreino = 3329; veadoTreino < 4031; veadoTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[4031];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 3329;
@@ -355,7 +350,6 @@ public class KNN {
 		//CACHORRO
 		for (int cachorroTreino = 4031; cachorroTreino < 4788; cachorroTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[4788];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 4031;
@@ -412,7 +406,6 @@ public class KNN {
 		//SAPO
 		for (int sapoTreino = 4788; sapoTreino < 5595; sapoTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[5595];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 4788;
@@ -469,7 +462,6 @@ public class KNN {
 		//CAVALO
 		for (int cavaloTreino = 5595; cavaloTreino < 6262; cavaloTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[6262];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 5595;
@@ -526,7 +518,6 @@ public class KNN {
 		//NAVIO
 		for (int navioTreino = 6262; navioTreino < 7114; navioTreino++) {
 			Random rand = new Random();
-			int[] numerosAleatorios = new int[7114];
 			int flag = 0;
 			int parada = 0;
 			int tamanhoVet = 6262;
