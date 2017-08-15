@@ -668,6 +668,8 @@ public class KNN {
 	}
 	
 	
+	
+	
 	// Calcula a distancia Euclidiana Ponderada entre duas imagens
 	public double distanciaEuclidianaPonderada(Imagem imgA, Imagem imgB) {
 		double soma = 0;
