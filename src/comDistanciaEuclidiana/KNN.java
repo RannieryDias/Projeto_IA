@@ -66,7 +66,7 @@ public class KNN {
 			Random rand = new Random();
 			
 			int flag = 0;
-			int parada = 0;
+			boolean parada = false;
 			int tamanhoVet = 0;
 			
 			//preenche o vetor com -1 para fazer a validação do vetor
@@ -75,9 +75,9 @@ public class KNN {
 			}
 			
 			//pega numeros aleatorios
-			while (parada < 1) {
+			while (parada != true) {
 				int temp = rand.nextInt(817);
-
+				System.out.println("nao saio do while");
 				//verifica se o numero sorteado já aconteceu antes
 				for(int i = 0; i < 817; i++) {
 					if (numerosAleatorios[i] == temp) {
@@ -97,7 +97,7 @@ public class KNN {
 				
 				//checa se o vetor foi preenchido
 				if(tamanhoVet == numerosAleatorios.length) {
-					parada = 1;
+					parada = true;
 				}
 				//seta a flag para 0 novamente
 				flag = 0;
