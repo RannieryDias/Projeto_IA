@@ -79,7 +79,7 @@ public class KNN {
 			//pega numeros aleatorios
 			while (parada != true) {
 				numeroAleatorioGerado = rand.nextInt(817);
-				System.out.println("nao saio do while");
+				
 				//verifica se o numero sorteado já aconteceu antes
 				for(int i = 0; i < 817; i++) {
 					if (numerosAleatorios[i] == numeroAleatorioGerado) {
@@ -109,7 +109,7 @@ public class KNN {
 				//preenche o vetor de treino com os numeros sorteados
 				if(parada == true) {
 					for(int i = 0; i < 545; i++) {
-						classes[i] = imgs[numerosAleatorios[i]].getClasse(); //ANTES DE MEXER COM AS IMAGENS SALVA LOGO A CLASSE DAS MESMAS 
+						classes[indTreino] = imgs[numerosAleatorios[i]].getClasse(); //ANTES DE MEXER COM AS IMAGENS SALVA LOGO A CLASSE DAS MESMAS 
 						treino[indTreino] = imgs[numerosAleatorios[i]];
 						indTreino++;
 					}
@@ -170,6 +170,7 @@ public class KNN {
 			
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 817; i < 1417; i++) {
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 			}
@@ -225,6 +226,7 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 1717; i < 2312; i++) {
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 			}
@@ -282,6 +284,7 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 2610; i < 3089; i++) {
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 			}
@@ -335,7 +338,7 @@ public class KNN {
 				
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 3329; i < 3797; i++) {
-
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 			}
@@ -392,6 +395,7 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 4031; i < 4536; i++) {
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 				//System.out.println("testando " + treino[i].equals(imgs[i]));
@@ -448,6 +452,7 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 4788; i < 5326; i++) {
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 			}
@@ -504,6 +509,7 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 5595; i < 6040; i++) {
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 			}
@@ -560,6 +566,7 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 6262; i < 6830; i++) {
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 			}
@@ -615,6 +622,7 @@ public class KNN {
 		
 			//preenche o vetor de treino com os numeros sorteados
 			for(int i = 7114; i < 7667; i++) {
+				classes[indTreino] = imgs[numerosAleatorios[i]].getClasse();
 				treino[indTreino] = imgs[numerosAleatorios[i]];
 				indTreino++;
 			}
@@ -626,11 +634,8 @@ public class KNN {
 			
 
 		this.setImagensTreinamento(treino);
-		for (int i = 0; i < this.getImagensTreinamento().length; i++) { //APOIS SETTAR O ATRIBUTO NA LINHA ANTERIOR... FORÇA A ELE TER CLASSES DIFERENTES DE NULL
+		for (int i = 0; i < this.getImagensTreinamento().length; i++) { //APOIS SETTAR O ATRIBUTO NA LINHA ANTERIOR... FORÇA A ELE TER 
 			this.getImagensTreinamento()[i].setClasse(classes[i]);
-		}
-		for (int i = 0; i < this.getImagensTreinamento().length; i++) {
-			System.out.println(this.getImagensTreinamento()[i].getClasse());
 		}
 		this.setImagensTest(test);
 
@@ -746,18 +751,18 @@ public class KNN {
 			k++;
 
 		// faz o calculo da distancia euclidiana ponderada
-//		for (int i = 0; i < treinamento; i++) {
-//			double d = this.distanciaEuclidianaPonderada(imagemTreinamento[i], img);
-//			dist[i] = d;
-//			menoresdist[i] = d;
-//		}
-		
-		//faz o calculo da distancia de manhattan
 		for (int i = 0; i < treinamento; i++) {
-			double d = this.distanciaManhattanPonderada(imagemTreinamento[i], img);
+			double d = this.distanciaEuclidianaPonderada(imagemTreinamento[i], img);
 			dist[i] = d;
 			menoresdist[i] = d;
 		}
+		
+		//faz o calculo da distancia de manhattan
+//		for (int i = 0; i < treinamento; i++) {
+//			double d = this.distanciaManhattanPonderada(imagemTreinamento[i], img);
+//			dist[i] = d;
+//			menoresdist[i] = d;
+//		}
 
 		
 		
