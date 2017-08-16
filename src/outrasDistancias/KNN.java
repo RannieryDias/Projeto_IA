@@ -213,6 +213,46 @@ public class KNN {
 		return ponderado;
 	}
 	
+	//DISTANCIA EUCLIDIANA
+	public double distanciaEclidiana (Imagem imgA, Imagem imgB) {
+		double soma = 0;
+		double sub = 0;
+		double resultado = 0;
+		double ponderado = 0;
+		
+		//somatorio da distancia euclidiana
+		for (int i = 0; i < 256; i++) {
+			sub = imgA.getHistograma()[i] - imgB.getHistograma()[i];
+			soma += Math.pow(sub, 2);
+			sub = 0;
+		}
+		
+		//raiz do somatorio
+		resultado = Math.sqrt(soma);
+		
+		//ponderamento
+		//ponderado = this.ponderamento(resultado, imgA, imgB);
+		
+		return resultado;
+	}
+	
+	// ponderamento da distancia Euclidiana
+		private double ponderamento(double resultado, Imagem imgA, Imagem imgB) {
+			double w, temp = 0, resultadoPonderado = 0;
+
+			// obtendo o valor do peso
+			w = 1 / resultado;
+
+			// somatorio da distancia euclidiana aplicando o peso
+			for (int i = 0; i < 256; i++) {
+				temp += (w * (Math.pow((imgA.getHistograma()[i] - imgB.getHistograma()[i]), 2)));
+			}
+
+			// raiz do ponderamento
+			resultadoPonderado = Math.sqrt(temp);
+			return resultadoPonderado;
+		}//*/
+	
 	// Metodo para classificação das imagens - OBS USAR UM NUMERO IMPAR PARA O K
 	public String classificacao(int k, Imagem[] imagemTreinamento, Imagem img) {
 
@@ -239,12 +279,19 @@ public class KNN {
 		if (k % 2 == 0)
 			k++;
 
-		//faz o calculo da distancia de manhattan
+		//faz calculo da distancia euclidiana ponderada
 		for (int i = 0; i < treinamento; i++) {
-			double d = this.distanciaManhattanPonderada(imagemTreinamento[i], img);
+			double d = this.distanciaEclidiana(imagemTreinamento[i], img);
 			dist[i] = d;
 			menoresdist[i] = d;
 		}
+		
+		//faz o calculo da distancia de manhattan
+//		for (int i = 0; i < treinamento; i++) {
+//			double d = this.distanciaManhattanPonderada(imagemTreinamento[i], img);
+//			dist[i] = d;
+//			menoresdist[i] = d;
+//		}
 
 		
 		

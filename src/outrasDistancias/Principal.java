@@ -18,7 +18,7 @@ public class Principal {
 		for(int i = 0; i < classDasImgs.length; i++)
 			classDasImgs[i] = imgs[i].getClasse();
 		
-		int k = 3; 			 //PARAMETRO DO KNN;
+		int k = 127; 			 //PARAMETRO DO KNN;
 		KNN knn = new KNN ();
 		inicio = System.currentTimeMillis();
 		knn.dividirImagens(imgs);

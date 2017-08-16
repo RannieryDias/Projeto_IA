@@ -702,9 +702,9 @@ public class KNN {
 		resultado = Math.sqrt(soma);
 		
 		// ponderamento
-		ponderado = this.ponderamento(resultado, imgA, imgB);
+		//ponderado = this.ponderamento(resultado, imgA, imgB);
 		
-		return ponderado;
+		return resultado;
 	}
 
 	// ponderamento da distancia Euclidiana
