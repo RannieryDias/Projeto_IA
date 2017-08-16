@@ -1,4 +1,4 @@
-package outrasDistancias;
+package comLeituraOrdenada;
 
 public class Imagem {
 	private int[]  histograma;

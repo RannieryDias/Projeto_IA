@@ -1,4 +1,4 @@
-package comDistanciaEuclidiana;
+package comLeituraAleatoria;
 
 public class Imagem {
 	private int[]  histograma;

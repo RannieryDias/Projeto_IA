@@ -1,4 +1,4 @@
-package outrasDistancias;
+package comLeituraOrdenada;
 
 import java.io.IOException;
 import java.util.Random;

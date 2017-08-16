@@ -1,4 +1,4 @@
-package comDistanciaEuclidiana;
+package comLeituraAleatoria;
 
 import java.io.IOException;
 import java.util.Random;
