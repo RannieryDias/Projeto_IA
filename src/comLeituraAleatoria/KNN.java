@@ -765,7 +765,7 @@ public class KNN {
 //		}
 
 		
-		
+		//
 		// pega as k menores distancias e verifica qual a classe da imagem para
 		// no final classificar
 		Arrays.sort(menoresdist);
