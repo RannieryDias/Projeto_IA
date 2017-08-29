@@ -1,4 +1,4 @@
-package fMeans;
+package fMeasure;
 
 public class Imagem {
 	private int[]  histograma;

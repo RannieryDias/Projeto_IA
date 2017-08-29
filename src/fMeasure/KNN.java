@@ -1,4 +1,4 @@
-package fMeans;
+package fMeasure;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

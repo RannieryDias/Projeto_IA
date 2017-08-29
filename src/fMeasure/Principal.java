@@ -1,4 +1,4 @@
-package fMeans;
+package fMeasure;
 
 import java.io.IOException;
 import java.util.Random;
